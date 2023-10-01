@@ -23,3 +23,7 @@ Route::prefix('admin')->group(function () {
         return view('backend.dashboard');
     });
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
