@@ -242,6 +242,12 @@
                                 <span class="nav-main-link-name">Page</span>
                             </a>
                         </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="{{ route('login') }}">
+                                <i class="nav-main-link-icon fa fa-sign-in"></i>
+                                <span class="nav-main-link-name">Login</span>
+                            </a>
+                        </li>
                     </ul>
                     <!-- END Header Navigation -->
 
