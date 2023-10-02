@@ -7,9 +7,10 @@
 <div class="content">
     <h2 class="content-heading">@yield('title')</h2>
     <!-- Dynamic Table Full -->
-    <form action="{{ route('roles.store') }}" method="POST">
+    <form action="{{ route('roles.update', $role) }}" method="POST">
         @csrf
-        @include('backend.permissions.roles.partials.form-control', ['submit' => 'Create'])
+        @method('PUT')
+        @include('backend.permission.roles.partials.form-control')
     </form>
     <!-- END Dynamic Table Full -->
 </div>

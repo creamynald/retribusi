@@ -4,21 +4,21 @@ namespace App\Http\Controllers\backend\permissions;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
-class roleController extends Controller
+class permissionController extends Controller
 {
     public function index()
     {
-        $roles = Role::get();
-        return view('backend.permission.roles.index', compact('roles'));
+        $permissions = Permission::get();
+        return view('backend.permission.permissions.index', compact('permissions'));
     }
 
     public function create()
     {
 
-        $role = new Role;
-        return view('backend.permission.roles.create', compact('role'));
+        $permission = new Permission;
+        return view('backend.permission.permissions.create', compact('permission'));
     }
 
     public function store()
@@ -27,33 +27,33 @@ class roleController extends Controller
             'name' => 'required|string',
         ]);
 
-        Role::create([
+        Permission::create([
             'name' => request('name'),
             'guard_name' => request('guard_name') ?? 'web',
         ]);
 
-        return to_route('roles.index');
+        return to_route('permissions.index');
     }
 
-    public function edit(Role $role)
+    public function edit(Permission $permission)
     {
-        return view('backend.permission.roles.edit', [
-            'role' => $role,
+        return view('backend.permission.permissions.edit', [
+            'permission' => $permission,
             'submit' => 'Update'
         ]);
     }
 
-    public function update(Role $role)
+    public function update(Permission $permission)
     {
         request()->validate([
             'name' => 'required|string',
         ]);
 
-        $role->update([
+        $permission->update([
             'name' => request('name'),
             'guard_name' => request('guard_name') ?? 'web',
         ]);
 
-        return to_route('roles.index');
+        return to_route('permissions.index');
     }
 }

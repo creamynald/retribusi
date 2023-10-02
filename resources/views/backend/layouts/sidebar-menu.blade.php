@@ -36,12 +36,14 @@
             </a>
         </li>
         <li class="nav-main-item">
-            <a class="nav-main-link" href="#">
+            <a class="nav-main-link {{ request()->segment(3) == 'permissions' ? 'active' : '' }}"
+                href="{{ route('permissions.index') }}">
                 <span class="nav-main-link-name">Permissions</span>
             </a>
         </li>
         <li class="nav-main-item">
-            <a class="nav-main-link" href="#">
+            <a class="nav-main-link {{ request()->segment(3) == 'assignable' ? 'active' : '' }}"
+                href="{{ route('assignable.index') }}">
                 <span class="nav-main-link-name">Assign Role</span>
             </a>
         </li>

@@ -1,4 +1,3 @@
-
 <div class="sidebar-content">
     <!-- Side Header -->
     <div class="content-header justify-content-lg-center">
@@ -10,7 +9,8 @@
             <a class="link-fx fw-bold tracking-wide mx-auto" href="{{ config('app.url') }}">
                 <span class="smini-hidden">
                     <i class="fa fa-fire text-primary"></i>
-                    <span class="fs-4 text-dual">CMS</span><span class="fs-4 text-primary">{{ config('app.name') }}</span>
+                    <span class="fs-4 text-dual">CMS</span><span class="fs-4 text-primary">{{ config('app.name')
+                        }}</span>
                 </span>
             </a>
         </div>
@@ -37,7 +37,7 @@
         <div class="content-side content-side-full">
             <ul class="nav-main">
                 <li class="nav-main-item">
-                    <a class="nav-main-link active" href="gs_backend.html">
+                    <a class="nav-main-link active" href="{{ url('admin/dashboard') }}">
                         <i class="nav-main-link-icon fa fa-house-user"></i>
                         <span class="nav-main-link-name">Dashboard</span>
                     </a>

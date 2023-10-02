@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 
 @section('title', 'Role & Permission')
-@section('subTitle', 'Roles')
+@section('subTitle', 'Assign Permissions')
 
 @section('content')
 <div class="content">
@@ -13,7 +13,7 @@
                 <small>Table @yield('subTitle')</small>
             </h3>
 
-            <a href="{{ route('roles.create') }}" type="button" class="btn-block-option">
+            <a href="{{ route('permissions.create') }}" type="button" class="btn-block-option">
                 <i class="si si-plus"></i> Add Data
             </a>
         </div>
@@ -23,7 +23,8 @@
                 <thead>
                     <tr>
                         <th class="text-center"></th>
-                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Permissions</th>
                         <th class="d-none d-sm-table-cell">Guard Name</th>
                         <th class="d-none d-sm-table-cell">Created At</th>
                         <th class="text-center" style="width: 15%;">Action</th>
@@ -34,13 +35,14 @@
                     <tr>
                         <td class="text-center">{{ $index+1 }}</td>
                         <td class="fw-semibold">{{ $role->name }}</td>
+                        <td class="text-center">{{ $role->name }}</td>
                         <td class="d-none d-sm-table-cell">
                             <span class="badge bg-danger">{{ $role->guard_name }}</span>
                         </td>
                         <td class="d-none d-sm-table-cell">{{ $role->created_at->format("d F Y") }}</td>
                         <td class="text-center">
-                            <a href="{{ route('roles.edit', $role) }}" type="button" class="btn btn-sm btn-secondary"
-                                title="Edit">
+                            <a href="" class="bt
+                            permission (role)n btn-sm btn-secondary" title="Edit">
                                 <i class="fa fa-pen"></i>
                             </a>
                             <button type="button" class="btn btn-sm btn-danger" title="Delete">

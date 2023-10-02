@@ -5,7 +5,7 @@
             <button type="submit" class="btn-block-option">
                 <i class="fa fa-fw fa-check opacity-50"></i> {{ $submit }}
             </button>
-            <a href="{{ route('roles.index') }}" class="btn-block-option">Back</a>
+            <a href="{{ route('permissions.index') }}" class="btn-block-option">Back</a>
         </div>
     </div>
     <div class="block-content">
@@ -14,14 +14,14 @@
                 <div class="mb-4">
                     <label class="form-label" for="name">Name</label>
                     <input type="text" class="form-control" id="name" name="name"
-                        value="{{ old('name') ?? $role->name }}" autofocus>
+                        value="{{ old('name') ?? $permission->name }}" autofocus>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="mb-4">
                     <label class="form-label" for="guard_name">Guard Name</label>
                     <input type="text" class="form-control" id="guard_name" name="name" placeholder='default to "web"'
-                        disabled value="{{ old('guard_name') ?? $role->guard_name }}">
+                        disabled value="{{ old('guard_name') ?? $permission->guard_name }}">
                 </div>
             </div>
         </div>
