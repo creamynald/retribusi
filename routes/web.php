@@ -1,18 +1,7 @@
 <?php
 
+use App\Http\Controllers\backend\permissions\roleController;
 use Illuminate\Support\Facades\Route;
-use Spatie\Permission\Models\Role;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     // $role = Role::find(2);
@@ -24,6 +13,9 @@ Route::get('/', function () {
 Route::middleware('has.role')->prefix('admin')->group(function () {
     Route::get('dashboard', function () {
         return view('backend.dashboard');
+    });
+    Route::prefix('role-and-permission')->group(function () {
+        Route::resource('roles', roleController::class);
     });
 });
 

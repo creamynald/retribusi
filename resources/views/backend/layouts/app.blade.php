@@ -26,6 +26,7 @@
     <!-- END Icons -->
 
     <!-- Stylesheets -->
+    @stack('css')
     <!-- Codebase framework -->
     <link rel="stylesheet" id="css-main" href="{{ asset('assets/css/codebase.min.css') }}">
 
@@ -117,5 +118,7 @@
         webpack is putting everything together at assets/_js/main/app.js
     -->
     <script src="{{ asset('assets/js/codebase.app.min.js') }}"></script>
+
+    @stack('js')
   </body>
 </html>
