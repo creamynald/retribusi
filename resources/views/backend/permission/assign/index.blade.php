@@ -13,7 +13,7 @@
                 <small>Table @yield('subTitle')</small>
             </h3>
 
-            <a href="{{ route('permissions.create') }}" type="button" class="btn-block-option">
+            <a href="{{ route('assignable.create') }}" type="button" class="btn-block-option">
                 <i class="si si-plus"></i> Add Data
             </a>
         </div>
@@ -35,14 +35,17 @@
                     <tr>
                         <td class="text-center">{{ $index+1 }}</td>
                         <td class="fw-semibold">{{ $role->name }}</td>
-                        <td class="text-center">{{ $role->name }}</td>
+                        <td class="text-center">
+                            @foreach ($role->permissions as $permission)
+                            <span class="badge bg-success">{{ $permission->name }}</span>
+                            @endforeach
+                        </td>
                         <td class="d-none d-sm-table-cell">
                             <span class="badge bg-danger">{{ $role->guard_name }}</span>
                         </td>
                         <td class="d-none d-sm-table-cell">{{ $role->created_at->format("d F Y") }}</td>
                         <td class="text-center">
-                            <a href="" class="bt
-                            permission (role)n btn-sm btn-secondary" title="Edit">
+                            <a href="" class="btn btn-sm btn-secondary" title="Edit">
                                 <i class="fa fa-pen"></i>
                             </a>
                             <button type="button" class="btn btn-sm btn-danger" title="Delete">

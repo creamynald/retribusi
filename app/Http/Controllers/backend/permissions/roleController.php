@@ -10,7 +10,7 @@ class roleController extends Controller
 {
     public function index()
     {
-        $roles = Role::get();
+        $roles = Role::where('name', '!=', 'super-admin')->get();
         return view('backend.permission.roles.index', compact('roles'));
     }
 
