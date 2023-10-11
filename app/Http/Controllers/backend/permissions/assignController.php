@@ -10,15 +10,9 @@ class assignController extends Controller
 {
     public function index()
     {
-        $roles = Role::where('name', '!=', 'super admin')->get();
-        return view('backend.permission.assign.index', compact('roles'));
-    }
-
-    public function create()
-    {
-        return view('backend.permission.assign.create', [
-            'roles' => Role::where('name', '!=', 'super admin')->get(),
-            'permissions' => Permission::get(),
+        return view('backend.permission.assign.index', [
+            'roles' => Role::all(),
+            'permissions' => Permission::all()
         ]);
     }
 
@@ -26,12 +20,34 @@ class assignController extends Controller
     {
         request()->validate([
             'role' => 'required',
-            'permissions' => 'array|required',
+            'permissions' => 'array|required'
         ]);
 
         $role = Role::find(request('role'));
         $role->givePermissionTo(request('permissions'));
 
-        return to_route('assignable.index')->with('success', 'Permission assigned successfully');
+        return back()->with('success', 'Permission assigned to role successfully');
+    }
+
+    public function edit($id)
+    {
+        return view('backend.permission.assign.sync', [
+            'role' => Role::find($id),
+            'roles' => Role::all(),
+            'permissions' => Permission::all(),
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        request()->validate([
+            'role' => 'required',
+            'permissions' => 'array|required'
+        ]);
+        
+        $role = Role::find($id);
+        $role->syncPermissions($request->permissions);
+
+        return to_route('assignable.index');
     }
 }

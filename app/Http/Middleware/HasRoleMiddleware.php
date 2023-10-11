@@ -20,7 +20,7 @@ class HasRoleMiddleware
         if ($request->user()->hasAnyRole($roles)) {
             return $next($request);
         } else {
-            abort(403);
+            return redirect()->route('login');
         }
     }
 }

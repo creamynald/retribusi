@@ -51,8 +51,8 @@
                             <h1 class="fw-bold mt-5 mb-2">Oops.. @yield('message')..</h1>
                             <h2 class="fs-4 fw-medium text-muted mb-5">We are sorry but your request contains bad syntax
                                 and cannot be fulfilled..</h2>
-                            <a class="btn btn-lg btn-alt-secondary" href="{{ url('/') }}">
-                                <i class="fa fa-arrow-left opacity-50 me-1"></i> Back
+                            <a class="btn btn-lg btn-alt-secondary" href="{{ route('dashboard') }}">
+                                <i class="fa fa-arrow-left opacity-50 me-1"></i> Return to Dashboard
                             </a>
                         </div>
                     </div>

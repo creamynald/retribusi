@@ -20,8 +20,8 @@
     </ul>
 </li>
 @endcan
+@can('permission')
 <li class="nav-main-heading">Administrator</li>
-@can('assign permission')
 <li class="nav-main-item {{ request()->segment(2) == 'role-and-permission' ? 'open' : '' }}">
     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false"
         href="#">
@@ -44,7 +44,13 @@
         <li class="nav-main-item">
             <a class="nav-main-link {{ request()->segment(3) == 'assignable' ? 'active' : '' }}"
                 href="{{ route('assignable.index') }}">
-                <span class="nav-main-link-name">Assign Role</span>
+                <span class="nav-main-link-name">Assign Permission</span>
+            </a>
+        </li>
+        <li class="nav-main-item">
+            <a class="nav-main-link {{ request()->segment(3) == 'assign' ? 'active' : '' }}"
+                href="{{ route('user.index') }}">
+                <span class="nav-main-link-name">Permission to Users</span>
             </a>
         </li>
     </ul>

@@ -6,8 +6,9 @@
 @section('content')
     <div class="content">
         <h2 class="content-heading">@yield('title')</h2>
-        <form action="{{ route('assignable.store') }}" method="POST">
+        <form action="{{ route('assignable.update', $role->id) }}" method="POST">
             @csrf
+            @method('PUT')
             <div class="block block-rounded">
                 <div class="block-header block-header-default">
                     <h3 class="block-title">
@@ -26,8 +27,9 @@
                                 <select class="js-select2 form-select" id="role" name="role" style="width: 100%;"
                                     data-placeholder="Choose role..">
                                     <option></option>
-                                    @foreach ($roles as $role)
-                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    @foreach ($roles as $item)
+                                        <option {{ $role->id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">
+                                            {{ $item->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -39,7 +41,8 @@
                                     style="width: 100%;" data-placeholder="Choose permissions.." multiple>
                                     <option></option>
                                     @foreach ($permissions as $permission)
-                                        <option value="{{ $permission->id }}">{{ $permission->name }}</option>
+                                        <option {{ $role->permissions()->find($permission->id) ? 'selected' : '' }}
+                                            value="{{ $permission->id }}">{{ $permission->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -48,59 +51,6 @@
                 </div>
             </div>
         </form>
-        <!-- Dynamic Table Full -->
-        <div class="block block-rounded">
-            <div class="block-header block-header-default">
-                <h3 class="block-title">
-                    <small>Table @yield('subTitle')</small>
-                </h3>
-            </div>
-            <div class="block-content block-content-full">
-                <!-- DataTables functionality is initialized with .js-dataTable-full class in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-                <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-                    <thead>
-                        <tr>
-                            <th class="text-center"></th>
-                            <th>Role</th>
-                            <th>Permissions</th>
-                            <th class="d-none d-sm-table-cell">Guard Name</th>
-                            <th class="d-none d-sm-table-cell">Created At</th>
-                            <th class="text-center" style="width: 15%;">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($roles as $index => $role)
-                            <tr>
-                                <td class="text-center">{{ $index + 1 }}</td>
-                                <td class="fw-semibold">{{ $role->name }}</td>
-                                <td class="text-center">
-                                    @if ($role->permissions->count() > 0)
-                                        @foreach ($role->permissions as $permission)
-                                            <span class="badge bg-success">{{ $permission->name }}</span>
-                                        @endforeach
-                                    @elseif($role->name == 'super admin')
-                                        <span class="badge bg-success">All Permission</span>
-                                    @else
-                                        <span class="badge bg-danger">No Permission</span>
-                                    @endif
-                                </td>
-                                <td class="d-none d-sm-table-cell">
-                                    <span class="badge bg-danger">{{ $role->guard_name }}</span>
-                                </td>
-                                <td class="d-none d-sm-table-cell">{{ $role->created_at->format('d F Y') }}</td>
-                                <td class="text-center">
-                                    <a href="{{ route('assignable.edit', $role) }}" class="btn btn-sm btn-secondary"
-                                        title="Sync">
-                                        <i class="fas fa-sync"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <!-- END Dynamic Table Full -->
     </div>
 @endsection
 

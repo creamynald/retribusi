@@ -1,12 +1,12 @@
 @extends('backend.layouts.app')
 
 @section('title', 'Role & Permission')
-@section('subTitle', 'Assign Permissions')
+@section('subTitle', 'Permission to Users')
 
 @section('content')
     <div class="content">
         <h2 class="content-heading">@yield('title')</h2>
-        <form action="{{ route('assignable.store') }}" method="POST">
+        <form action="{{ route('user.store') }}" method="POST">
             @csrf
             <div class="block block-rounded">
                 <div class="block-header block-header-default">
@@ -22,24 +22,24 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="mb-4">
-                                <label class="form-label" for="role">Role</label>
-                                <select class="js-select2 form-select" id="role" name="role" style="width: 100%;"
-                                    data-placeholder="Choose role..">
+                                <label class="form-label" for="email">User</label>
+                                <select class="js-select2 form-select" id="email" name="email" style="width: 100%;"
+                                    data-placeholder="Choose user by email..">
                                     <option></option>
-                                    @foreach ($roles as $role)
-                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    @foreach ($users as $user)
+                                        <option value="{{ $user->id }}">{{ $user->email }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="mb-4">
-                                <label class="form-label" for="permissions">Permissions</label>
-                                <select class="js-select2 form-select" id="permissions" name="permissions[]"
-                                    style="width: 100%;" data-placeholder="Choose permissions.." multiple>
+                                <label class="form-label" for="role">Roles</label>
+                                <select class="js-select2 form-select" id="role" name="role[]"
+                                    style="width: 100%;" data-placeholder="Choose roles.." multiple>
                                     <option></option>
-                                    @foreach ($permissions as $permission)
-                                        <option value="{{ $permission->id }}">{{ $permission->name }}</option>
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -61,35 +61,33 @@
                     <thead>
                         <tr>
                             <th class="text-center"></th>
-                            <th>Role</th>
-                            <th>Permissions</th>
+                            <th>email</th>
+                            <th>Roles</th>
                             <th class="d-none d-sm-table-cell">Guard Name</th>
                             <th class="d-none d-sm-table-cell">Created At</th>
                             <th class="text-center" style="width: 15%;">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($roles as $index => $role)
+                        @foreach ($users as $index => $user)
                             <tr>
                                 <td class="text-center">{{ $index + 1 }}</td>
-                                <td class="fw-semibold">{{ $role->name }}</td>
+                                <td class="fw-semibold">{{ $user->email }}</td>
                                 <td class="text-center">
-                                    @if ($role->permissions->count() > 0)
-                                        @foreach ($role->permissions as $permission)
-                                            <span class="badge bg-success">{{ $permission->name }}</span>
+                                    @if (!empty($user->getRoleNames()))
+                                        @foreach ($user->getRoleNames() as $role)
+                                            <span class="badge bg-success">{{ $role }}</span>
                                         @endforeach
-                                    @elseif($role->name == 'super admin')
-                                        <span class="badge bg-success">All Permission</span>
                                     @else
-                                        <span class="badge bg-danger">No Permission</span>
+                                        <span class="badge bg-danger">No Role</span>
                                     @endif
                                 </td>
                                 <td class="d-none d-sm-table-cell">
-                                    <span class="badge bg-danger">{{ $role->guard_name }}</span>
+                                    <span class="badge bg-success">{{ $user->guard_name }}</span>
                                 </td>
-                                <td class="d-none d-sm-table-cell">{{ $role->created_at->format('d F Y') }}</td>
+                                <td class="d-none d-sm-table-cell">{{ $user->created_at->format('d F Y') }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('assignable.edit', $role) }}" class="btn btn-sm btn-secondary"
+                                    <a href="{{ route('user.edit', $user) }}" class="btn btn-sm btn-secondary"
                                         title="Sync">
                                         <i class="fas fa-sync"></i>
                                     </a>

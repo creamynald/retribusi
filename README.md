@@ -26,7 +26,7 @@ and we are :
 
 1. roles is automaticly running if u run migrate with --seed
 2. for demo purpose, u can use :
-    - super admin is superadmin@cms.test
+    - super admin is creamynald@cms.test
     - admin is admin@cms.test
     - also user is test@cms.test
     - and then, default password is _password_
