@@ -43,9 +43,15 @@
                                 title="Edit">
                                 <i class="fa fa-pen"></i>
                             </a>
-                            <button type="button" class="btn btn-sm btn-danger" title="Delete">
-                                <i class="fa fa-trash-can"></i>
-                            </button>
+                            
+                            <form action="{{ route('roles.destroy', $role) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger" title="Delete"
+                                    onclick="return confirm('Are you sure?')">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach

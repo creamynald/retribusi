@@ -12,7 +12,7 @@ class userController extends Controller
     public function index()
     {
         $roles = Role::get();
-        $users = User::has('roles')->get();
+        $users = User::get();
         return view('backend.permission.assign.user.index', compact('roles', 'users'));
     }
 

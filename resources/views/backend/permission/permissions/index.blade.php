@@ -43,9 +43,15 @@
                                 class="btn btn-sm btn-secondary" title="Edit">
                                 <i class="fa fa-pen"></i>
                             </a>
-                            <button type="button" class="btn btn-sm btn-danger" title="Delete">
-                                <i class="fa fa-trash-can"></i>
-                            </button>
+                            <form action="{{ route('permissions.destroy', $permission) }}" method="POST"
+                                class="d-inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger"
+                                    onclick="return confirm('Are you sure?')" title="Delete">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach

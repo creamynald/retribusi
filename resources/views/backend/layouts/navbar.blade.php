@@ -31,7 +31,7 @@
                 aria-labelledby="page-header-user-dropdown">
                 <div class="p-2">
                     <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1"
-                        href="be_pages_generic_profile.html">
+                        href="{{ route('profile.index') }}">
                         <span>Profile</span>
                         <i class="fa fa-fw fa-user opacity-25"></i>
                     </a>

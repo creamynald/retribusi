@@ -16,8 +16,7 @@ class roleController extends Controller
 
     public function create()
     {
-
-        $role = new Role;
+        $role = new Role();
         return view('backend.permission.roles.create', compact('role'));
     }
 
@@ -39,7 +38,7 @@ class roleController extends Controller
     {
         return view('backend.permission.roles.edit', [
             'role' => $role,
-            'submit' => 'Update'
+            'submit' => 'Update',
         ]);
     }
 
@@ -54,6 +53,12 @@ class roleController extends Controller
             'guard_name' => request('guard_name') ?? 'web',
         ]);
 
+        return to_route('roles.index');
+    }
+
+    public function destroy(Role $role)
+    {
+        $role->delete();
         return to_route('roles.index');
     }
 }
