@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Models\Transaction;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Penerimaan extends Model
+{
+    use HasFactory;
+    protected $fillable = [
+        'upt_id',
+        'periode',
+        'kode_rekening',
+        'nama_rekening',
+        'tgl_penerimaan',
+        'tgl_penyetoran',
+        'bukti_pembayaran',
+        'jumlah',
+        'status',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+}

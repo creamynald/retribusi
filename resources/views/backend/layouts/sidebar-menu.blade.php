@@ -41,7 +41,7 @@
     </a>
     <ul class="nav-main-submenu">
         <li class="nav-main-item">
-            <a class="nav-main-link" href="javascript:void(0)">
+            <a class="nav-main-link" href="{{route('penerimaan.index')}}">
                 <span class="nav-main-link-name">Retribusi</span>
             </a>
         </li>
