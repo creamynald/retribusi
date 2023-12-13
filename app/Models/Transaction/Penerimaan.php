@@ -2,6 +2,7 @@
 
 namespace App\Models\Transaction;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,7 +10,7 @@ class Penerimaan extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'upt_id',
+        'user_id',
         'periode',
         'kode_rekening',
         'nama_rekening',

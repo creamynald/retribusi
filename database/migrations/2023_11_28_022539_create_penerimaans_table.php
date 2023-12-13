@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('penerimaans', function (Blueprint $table) {
             $table->id();
-            $table->string('upt_id');
+            $table->string('user_id');
             $table->string('periode');
             $table->string('kode_rekening');
             $table->string('nama_rekening');

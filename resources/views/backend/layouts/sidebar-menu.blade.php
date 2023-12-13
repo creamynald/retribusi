@@ -1,5 +1,5 @@
 <li class="nav-main-heading">Master Data</li>
-<li class="nav-main-item">
+<li class="nav-main-item {{ request()->segment(2) == 'pemerintah-daerah' ? 'open' : '' }}">
     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false"
         href="#">
         <i class="nav-main-link-icon fa fa-money-bill-transfer"></i>
@@ -7,8 +7,23 @@
     </a>
     <ul class="nav-main-submenu">
         <li class="nav-main-item">
-            <a class="nav-main-link" href="javascript:void(0)">
-                <span class="nav-main-link-name">submenu</span>
+            <a class="nav-main-link {{ request()->segment(3) == 'pangkat' ? 'active' : '' }}" href="{{ route('pangkat.index') }}">
+                <span class="nav-main-link-name">Pangkat</span>
+            </a>
+        </li>
+        <li class="nav-main-item">
+            <a class="nav-main-link {{ request()->segment(3) == 'jabatan' ? 'active' : '' }}" href="{{ route('jabatan.index') }}">
+                <span class="nav-main-link-name">Jabatan</span>
+            </a>
+        </li>
+        <li class="nav-main-item">
+            <a class="nav-main-link {{ request()->segment(3) == 'pengguna' ? 'active' : '' }}" href="{{ route('pengguna.index') }}">
+                <span class="nav-main-link-name">Pengguna Aplikasi  </span>
+            </a>
+        </li>
+        <li class="nav-main-item">
+            <a class="nav-main-link {{ request()->segment(3) == 'data-umum' ? 'active' : '' }}" href="{{ route('jabatan.index') }}">
+                <span class="nav-main-link-name">Data Umum Pemda</span>
             </a>
         </li>
     </ul>

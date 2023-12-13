@@ -36,6 +36,7 @@ class PenerimaanController extends Controller
     {
         // dd($request->all());
         $request->validate([
+            'user_id' => auth()->id(),
             'periode' => 'required',
             'kode_rekening' => 'required',
             'nama_rekening' => 'required',
