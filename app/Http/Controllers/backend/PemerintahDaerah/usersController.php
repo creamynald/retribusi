@@ -16,7 +16,7 @@ class usersController extends Controller
     public function index()
     {
         return view('backend.pemerintah-daerah.pengguna.index', [
-            'datas' => User::all()->sortByDesc('nip'),
+            'datas' => User::all()->except(1),
         ]);
     }
 
@@ -53,8 +53,36 @@ class usersController extends Controller
         return to_route('pengguna.index');
     }
 
-    public function edit()
+    public function edit($id)
     {
-        // besok saja
+        return view('backend.pemerintah-daerah.pengguna.edit', [
+            'data' => User::findOrFail($id),
+            'golongans' => Pangkat::all(),
+            'jabatans' => Jabatan::all(),
+            'roles' => Role::where('name', '!=', 'super admin')->get(),
+            'submit' => 'Ubah',
+        ]);
+    }
+
+    public function update($id)
+    {
+        $data = request()->validate([
+            'nip' => 'required|unique:users,nip,' . $id,
+            'name' => 'required',
+            'email' => 'required|unique:users,email,' . $id,
+            'golongan_id' => 'required',
+            'jabatan_id' => 'required',
+            'role' => 'required',
+        ]);
+
+        $user = User::findOrFail($id);
+
+        $user->update($data);
+
+        $user->syncRoles($data['role']);
+
+        Alert::success('Berhasil', 'Data berhasil diubah');
+
+        return to_route('pengguna.index');
     }
 }

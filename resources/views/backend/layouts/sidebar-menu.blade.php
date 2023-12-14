@@ -17,8 +17,18 @@
             </a>
         </li>
         <li class="nav-main-item">
+            <a class="nav-main-link {{ request()->segment(3) == 'opd' ? 'active' : '' }}" href="{{ route('opd.index') }}">
+                <span class="nav-main-link-name">Data OPD</span>
+            </a>
+        </li>
+        <li class="nav-main-item">
+            <a class="nav-main-link {{ request()->segment(3) == 'upt' ? 'active' : '' }}" href="{{ route('upt.index') }}">
+                <span class="nav-main-link-name">Data UPT</span>
+            </a>
+        </li>
+        <li class="nav-main-item">
             <a class="nav-main-link {{ request()->segment(3) == 'pengguna' ? 'active' : '' }}" href="{{ route('pengguna.index') }}">
-                <span class="nav-main-link-name">Pengguna Aplikasi  </span>
+                <span class="nav-main-link-name">Pengguna Aplikasi</span>
             </a>
         </li>
         <li class="nav-main-item">

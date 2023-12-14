@@ -25,6 +25,7 @@
                             <th class="text-center">NIP</th>
                             <th>Nama</th>
                             <th class="d-none d-sm-table-cell">Jabatan</th>
+                            <th class="d-none d-sm-table-cell">Role</th>
                             <th class="text-center" style="width: 15%;">Aksi</th>
                         </tr>
                     </thead>
@@ -39,19 +40,28 @@
                                     @endif
                                 </td>
                                 <td class="fw-semibold">{{ $data->name }}</td>
-                                <td class="fw-semibold">
+                                <td class="fw-semibold text-center">
                                     @if ($data->jabatan)
                                         {{ $data->jabatan->nama }}
                                     @else
                                         <span class="badge bg-danger">Jabatan belum diatur</span>
                                     @endif
                                 </td>
+                                <td class="fw-semibold text-center">
+                                    @if ($data->getRoleNames())
+                                        @foreach ($data->getRoleNames() as $role)
+                                            <span class="badge bg-success">{{ $role }}</span>
+                                        @endforeach
+                                    @else
+                                        <span class="badge bg-danger">Role belum diatur</span>
+                                    @endif
+                                </td>
                                 <td class="text-center">
-                                    <a href="{{ route('pangkat.edit', $data) }}" type="button"
+                                    <a href="{{ route('pengguna.edit', $data) }}" type="button"
                                         class="btn btn-sm btn-secondary" title="Edit">
                                         <i class="fa fa-pen"></i>
                                     </a>
-                                    <form action="{{ route('pangkat.destroy', $data) }}" method="POST"
+                                    <form action="{{ route('pengguna.destroy', $data) }}" method="POST"
                                         class="d-inline-block">
                                         @csrf
                                         @method('DELETE')
