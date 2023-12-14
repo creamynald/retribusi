@@ -127,8 +127,14 @@ class PenerimaanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Penerimaan $penerimaan)
+    public function destroy(Request $request, Penerimaan $penerimaan)
     {
+        $get_file = Penerimaan::select('bukti_pembayaran')->whereId($penerimaan->id)->first();
+        if (File::exists(public_path($get_file))) {
+            dd('ada');
+        }else{
+            dd('gaada');
+        }
         $penerimaan->delete();
         return back()->with('success', 'Selamat data berhasil dihapus');
     }

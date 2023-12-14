@@ -35,7 +35,7 @@
                         <div class="mb-4">
                             <label class="form-label" for="periode">Periode</label>
                             <input type="text" class="form-control" id="periode" name="periode"
-                                value="{{ old('periode') ?? $penerimaan->periode }}" autofocus placeholder="Kode Rekening">
+                                value="{{ old('periode') ?? $penerimaan->periode }}" autofocus placeholder="Periode">
                         </div>
                     </div>
                 </div>
