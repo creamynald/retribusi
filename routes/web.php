@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backend\PemerintahDaerah\{PangkatController, JabatanController, usersController};
 use App\Http\Controllers\backend\permissions\{assignController, roleController, permissionController, userController};
 use App\Http\Controllers\backend\user\profileController;
 use App\Http\Controllers\backend\Transaction\PenerimaanController;
@@ -25,6 +26,11 @@ Route::middleware('has.role')->prefix('admin')->group(function () {
     });
     Route::prefix('transaksi')->group(function () {
         Route::resource('penerimaan', PenerimaanController::class);
+    });
+    Route::prefix('pemerintah-daerah')->group(function () {
+        Route::resource('pangkat', PangkatController::class);
+        Route::resource('jabatan', JabatanController::class);
+        Route::resource('pengguna', usersController::class);
     });
 });
 

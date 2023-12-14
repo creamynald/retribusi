@@ -3,11 +3,16 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\Pemda\Jabatan;
+use App\Models\Pemda\Pangkat;
+use App\Models\Transaction\Penerimaan;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class User extends Authenticatable
 {
@@ -19,7 +24,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'nip',
         'name',
+        'golongan_id',
+        'jabatan_id',
+        'avatar',
         'email',
         'password',
     ];
@@ -48,5 +57,15 @@ class User extends Authenticatable
     public function penerimaans()
     {
         return $this->hasMany(Penerimaan::class);
+    }
+
+    public function pangkat()
+    {
+        return $this->belongsTo(Pangkat::class, 'golongan_id');
+    }
+
+    public function jabatan()
+    {
+        return $this->belongsTo(Jabatan::class, 'jabatan_id');
     }
 }

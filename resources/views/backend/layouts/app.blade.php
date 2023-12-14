@@ -38,7 +38,7 @@
   <body>
     <!-- Page Container -->
     <div id="page-container" class="sidebar-o enable-page-overlay side-scroll page-header-modern main-content-boxed">
-
+      @include('sweetalert::alert')
       <!-- Sidebar -->
       <nav id="sidebar">
         <!-- Sidebar Content -->
