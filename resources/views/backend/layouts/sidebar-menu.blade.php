@@ -7,22 +7,22 @@
     </a>
     <ul class="nav-main-submenu">
         <li class="nav-main-item">
-            <a class="nav-main-link {{ request()->segment(3) == 'pangkat' ? 'active' : '' }}" href="{{ route('pangkat.index') }}">
-                <span class="nav-main-link-name">Pangkat</span>
+            <a class="nav-main-link {{ request()->segment(3) == 'opd' ? 'active' : '' }}" href="{{ route('opd.index') }}">
+                <span class="nav-main-link-name">Data OPD</span>
             </a>
         </li>
         <li class="nav-main-item">
-            <a class="nav-main-link {{ request()->segment(3) == 'jabatan' ? 'active' : '' }}" href="{{ route('jabatan.index') }}">
-                <span class="nav-main-link-name">Jabatan</span>
+            <a class="nav-main-link {{ request()->segment(3) == 'upt' ? 'active' : '' }}" href="{{ route('upt.index') }}">
+                <span class="nav-main-link-name">Data UPT</span>
             </a>
         </li>
         <li class="nav-main-item">
             <a class="nav-main-link {{ request()->segment(3) == 'pengguna' ? 'active' : '' }}" href="{{ route('pengguna.index') }}">
-                <span class="nav-main-link-name">Pengguna Aplikasi  </span>
+                <span class="nav-main-link-name">Pengguna Aplikasi</span>
             </a>
         </li>
         <li class="nav-main-item">
-            <a class="nav-main-link {{ request()->segment(3) == 'data-umum' ? 'active' : '' }}" href="{{ route('jabatan.index') }}">
+            <a class="nav-main-link {{ request()->segment(3) == 'data-umum' ? 'active' : '' }}" href="#">
                 <span class="nav-main-link-name">Data Umum Pemda</span>
             </a>
         </li>

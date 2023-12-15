@@ -18,7 +18,6 @@ class Penerimaan extends Model
         'tgl_penyetoran',
         'bukti_pembayaran',
         'jumlah',
-        'status',
     ];
 
     public function user()

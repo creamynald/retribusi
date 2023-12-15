@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Transaction\Penerimaan;
+use Illuminate\Support\Facades\Auth;
 
 class PenerimaanController extends Controller
 {
@@ -34,9 +35,7 @@ class PenerimaanController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
-            'user_id' => auth()->id(),
             'periode' => 'required',
             'kode_rekening' => 'required',
             'nama_rekening' => 'required',
@@ -55,8 +54,10 @@ class PenerimaanController extends Controller
             'bukti_pembayaran.mime' => 'Bukti Pembayaran harus berupa file .pdf, .jpg, .jpeg, .png',
             'jumlah.required' => 'Jumlah Setoran harus diisi'
         ]);
-
         $data = $request->all();
+        $data['user_id'] = Auth::user()->id;
+        $data['status'] = 'Belum Diverifikasi';
+
         if ($image = $request->file('bukti_pembayaran')) {
             $destinationPath = 'images/';
             $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
@@ -118,9 +119,9 @@ class PenerimaanController extends Controller
             $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $postImage);
             $data['bukti_pembayaran'] = "$postImage";
-        }else{
-            unset($data['bukti_pembayaran']);
+            Storage::delete($penerimaan->bukti_pembayaran);
         }
+
         $penerimaan->update($data);
         return to_route('penerimaan.index')->with('success', 'Data berhasil diubah');
     }

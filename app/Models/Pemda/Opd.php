@@ -4,14 +4,16 @@ namespace App\Models\Pemda;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Permission\Traits\HasRoles;
 
-class Jabatan extends Model
+class Opd extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'nama'
+        'nama',
+        'no_telp',
+        'kode_pos',
+        'website',
+        'alamat',
     ];
-
 }

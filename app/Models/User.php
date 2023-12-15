@@ -5,11 +5,14 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Models\Pemda\Jabatan;
+use App\Models\Pemda\Opd;
 use App\Models\Pemda\Pangkat;
+use App\Models\Pemda\Upt;
 use App\Models\Transaction\Penerimaan;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -24,10 +27,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'nip',
         'name',
-        'golongan_id',
-        'jabatan_id',
+        'upt_id',
+        'opd_id',
         'avatar',
         'email',
         'password',
@@ -67,5 +69,15 @@ class User extends Authenticatable
     public function jabatan()
     {
         return $this->belongsTo(Jabatan::class, 'jabatan_id');
+    }
+
+    public function opd()
+    {
+        return $this->belongsTo(Opd::class, 'opd_id');
+    }
+
+    public function upt()
+    {
+        return $this->belongsTo(Upt::class, 'upt_id');
     }
 }

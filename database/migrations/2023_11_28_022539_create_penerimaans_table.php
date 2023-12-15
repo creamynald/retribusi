@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('penerimaans', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
+            $table->string('user_id')->constrained('users');
             $table->string('periode');
             $table->string('kode_rekening');
             $table->string('nama_rekening');
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('tgl_penyetoran');
             $table->string('bukti_pembayaran');
             $table->string('jumlah');
-            $table->string('status');
+            $table->string('status')->default('Belum Diverifikasi');
             $table->timestamps();
         });
     }

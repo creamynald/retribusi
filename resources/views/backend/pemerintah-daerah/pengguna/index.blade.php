@@ -22,36 +22,35 @@
                 <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                     <thead>
                         <tr>
-                            <th class="text-center">NIP</th>
                             <th>Nama</th>
-                            <th class="d-none d-sm-table-cell">Jabatan</th>
+                            <th class="d-none d-sm-table-cell">Email</th>
+                            <th class="text-center">Jenis Akun</th>
                             <th class="text-center" style="width: 15%;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($datas as $index => $data)
                             <tr>
-                                <td class="text-center">
-                                    @if ($data->nip)
-                                        {{ $data->nip }}
-                                    @else
-                                        <span class="badge bg-danger">NIP belum diatur</span>
-                                    @endif
-                                </td>
                                 <td class="fw-semibold">{{ $data->name }}</td>
-                                <td class="fw-semibold">
-                                    @if ($data->jabatan)
-                                        {{ $data->jabatan->nama }}
+                                <td class="fw-semibold text-center">
+                                    {{ $data->email }}
+                                </td>
+                                <td class="text-center">
+                                    @if ($data->opd_id && $data->upt_id == null)
+                                        <span class="badge bg-success">{{ $data->opd->nama }}</span>
+                                    @elseif ( $data->upt_id )
+                                        <span class="badge bg-success">{{ $data->opd->nama }}</span>
+                                        <span class="badge bg-warning">{{ $data->upt->nama }}</span>
                                     @else
-                                        <span class="badge bg-danger">Jabatan belum diatur</span>
+                                        <span class="badge bg-danger">Jenis akun belum diatur</span>
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{ route('pangkat.edit', $data) }}" type="button"
+                                    <a href="{{ route('pengguna.edit', $data) }}" type="button"
                                         class="btn btn-sm btn-secondary" title="Edit">
                                         <i class="fa fa-pen"></i>
                                     </a>
-                                    <form action="{{ route('pangkat.destroy', $data) }}" method="POST"
+                                    <form action="{{ route('pengguna.destroy', $data) }}" method="POST"
                                         class="d-inline-block">
                                         @csrf
                                         @method('DELETE')
