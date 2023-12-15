@@ -13,7 +13,7 @@ class UPTController extends Controller
     {
         // dd(Upt::all());
         return view('backend.pemerintah-daerah.upt.index',[
-            'datas' => Upt::all(),
+            'datas' => Upt::orderBy('opd_id','asc')->get(),
         ]);
     }
 
@@ -46,5 +46,26 @@ class UPTController extends Controller
             'data_opd' => Opd::all(),
             'submit' => 'Ubah',
         ]);
+    }
+
+    public function update(Request $request, Upt $upt)
+    {
+        $request->validate([
+            'opd_id' => 'required',
+            'nama' => 'required',
+            'alamat' => 'required',
+            'no_telp' => 'required',
+        ]);
+
+        $upt->update($request->all());
+
+        return redirect()->route('upt.index')->with('success','Data berhasil diubah');
+    }
+
+    public function destroy(Upt $upt)
+    {
+        $upt->delete();
+
+        return redirect()->route('upt.index')->with('success','Data berhasil dihapus');
     }
 }

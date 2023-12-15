@@ -22,38 +22,27 @@
                 <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                     <thead>
                         <tr>
-                            <th class="text-center">NIP</th>
                             <th>Nama</th>
-                            <th class="d-none d-sm-table-cell">Jabatan</th>
-                            <th class="d-none d-sm-table-cell">Role</th>
+                            <th class="d-none d-sm-table-cell">Email</th>
+                            <th class="text-center">Jenis Akun</th>
                             <th class="text-center" style="width: 15%;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($datas as $index => $data)
                             <tr>
-                                <td class="text-center">
-                                    @if ($data->nip)
-                                        {{ $data->nip }}
-                                    @else
-                                        <span class="badge bg-danger">NIP belum diatur</span>
-                                    @endif
-                                </td>
                                 <td class="fw-semibold">{{ $data->name }}</td>
                                 <td class="fw-semibold text-center">
-                                    @if ($data->jabatan)
-                                        {{ $data->jabatan->nama }}
-                                    @else
-                                        <span class="badge bg-danger">Jabatan belum diatur</span>
-                                    @endif
+                                    {{ $data->email }}
                                 </td>
-                                <td class="fw-semibold text-center">
-                                    @if ($data->getRoleNames())
-                                        @foreach ($data->getRoleNames() as $role)
-                                            <span class="badge bg-success">{{ $role }}</span>
-                                        @endforeach
+                                <td class="text-center">
+                                    @if ($data->opd_id && $data->upt_id == null)
+                                        <span class="badge bg-success">{{ $data->opd->nama }}</span>
+                                    @elseif ( $data->upt_id )
+                                        <span class="badge bg-success">{{ $data->opd->nama }}</span>
+                                        <span class="badge bg-warning">{{ $data->upt->nama }}</span>
                                     @else
-                                        <span class="badge bg-danger">Role belum diatur</span>
+                                        <span class="badge bg-danger">Jenis akun belum diatur</span>
                                     @endif
                                 </td>
                                 <td class="text-center">

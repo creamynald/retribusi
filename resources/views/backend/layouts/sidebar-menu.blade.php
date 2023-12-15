@@ -6,7 +6,7 @@
         <span class="nav-main-link-name">Pemerintah Daerah</span>
     </a>
     <ul class="nav-main-submenu">
-        <li class="nav-main-item">
+        {{-- <li class="nav-main-item">
             <a class="nav-main-link {{ request()->segment(3) == 'pangkat' ? 'active' : '' }}" href="{{ route('pangkat.index') }}">
                 <span class="nav-main-link-name">Pangkat</span>
             </a>
@@ -15,7 +15,7 @@
             <a class="nav-main-link {{ request()->segment(3) == 'jabatan' ? 'active' : '' }}" href="{{ route('jabatan.index') }}">
                 <span class="nav-main-link-name">Jabatan</span>
             </a>
-        </li>
+        </li> --}}
         <li class="nav-main-item">
             <a class="nav-main-link {{ request()->segment(3) == 'opd' ? 'active' : '' }}" href="{{ route('opd.index') }}">
                 <span class="nav-main-link-name">Data OPD</span>

@@ -23,8 +23,8 @@
                 <thead>
                     <tr>
                         <th class="text-center"></th>
-                        <th>UPT</th>
                         <th>OPD</th>
+                        <th>UPT</th>
                         <th>Alamat</th>
                         <th>Website</th>
                         <th class="text-center" style="width: 15%;">Aksi</th>
@@ -34,8 +34,8 @@
                     @foreach ($datas as $index => $data)
                     <tr>
                         <td class="text-center">{{ $index+1 }}</td>
-                        <td class="fw-semibold">{{ $data->nama }}</td>
                         <td class="fw-semibold">{{ $data->opd->nama }}</td>
+                        <td class="fw-semibold">{{ $data->nama }}</td>
                         <td class="fw-semibold">{{ $data->alamat }}</td>
                         <td class="fw-semibold">
                             <a href="{{ $data->website }}" target="_blank">{{ $data->website }}</a>
