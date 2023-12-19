@@ -25,6 +25,7 @@ Route::middleware('has.role')->prefix('admin')->group(function () {
         Route::resource('profile', profileController::class);
     });
     Route::prefix('transaksi')->group(function () {
+        Route::post('penerimaan/update-status', [PenerimaanController::class, 'updateStatus'])->name('updateStatus');
         Route::resource('penerimaan', PenerimaanController::class);
     });
     Route::prefix('pemerintah-daerah')->group(function () {
