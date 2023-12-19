@@ -20,8 +20,8 @@
         @if (Request::segment(5) == 'edit')
         @method('put') 
         @endif
-        {{-- Id User untuk kebutuhan request di controller saat melakukan penyimpanan --}}
-        <input type="hidden" name="upt_id" id="" value="{{Auth::user()->id}}">
+        {{-- UPT ID untuk kebutuhan request di controller saat melakukan penyimpanan --}}
+        <input type="hidden" name="upt_id" id="" value="{{Auth::user()->upt_id}}">
         <div class="block block-rounded">
             <div class="block-header block-header-default">
                 <h3 class="block-title">Form @yield('subTitle')</h3>
