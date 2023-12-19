@@ -9,13 +9,24 @@
         <!-- Dynamic Table Full -->
         <div class="block block-rounded">
             <div class="block-header block-header-default">
-                <h3 class="block-title">
+                <h3 class="block-title col-3">
                     <small>Table @yield('subTitle')</small>
                 </h3>
 
+                @if (auth()->user()->upt_id == null)
+                <form action="" class="d-flex gap-2">
+                    <select name="upt_id" id="upt_id" class="form-select">
+                        <option value="">--Pilih UPT--</option>
+                        @foreach ($upt as $item)                        
+                            <option value="{{$item->upt_id}}" @if (isset($_GET['upt_id'])) @if($_GET['upt_id'] == $item->upt_id) selected @endif @endif>{{$item->name}}</option>
+                        @endforeach
+                    </select>
+                </form>
+                @else
                 <a href="{{ route('penerimaan.create') }}" type="button" class="btn-block-option">
                     <i class="si si-plus"></i> Add Data
                 </a>
+                @endif
             </div>
             <div class="block-content block-content-full">
                 <!-- DataTables functionality is initialized with .js-dataTable-full class in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
@@ -33,7 +44,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($penerimaan as $index => $data)
+                        @forelse ($penerimaan as $index => $data)
                             <tr>
                                 <td class="text-center">{{ $index + 1 }}</td>
                                 <td class="fw-semibold">{{ $data->kode_rekening }}</td>
@@ -49,6 +60,8 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
+                                    @if (auth()->user()->upt_id != null)
+                                        
                                     <a href="{{ route('penerimaan.edit', $data) }}" type="button"
                                         class="btn btn-sm btn-secondary" title="Edit">
                                         <i class="fa fa-pen"></i>
@@ -62,9 +75,57 @@
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </form>
+                                    @else
+                                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modal-slideleft{{$data->id}}"><i class="fa fa-list"></i></button>
+                                    @endif
                                 </td>
                             </tr>
-                        @endforeach
+
+                            @if (auth()->user()->upt_id == null)    
+                            <!-- Slide Left Modal -->
+                            <div class="modal fade" id="modal-slideleft{{$data->id}}" tabindex="-1" role="dialog" aria-labelledby="modal-slideleft" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-slideleft modal-xl" role="document">
+                                <div class="modal-content">
+                                    <div class="block block-rounded shadow-none mb-0">
+                                        <div class="block-header block-header-default">
+                                            <h3 class="block-title">Retribusi Penerimaan</h3>
+                                            <div class="block-options">
+                                            <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                            </div>
+                                        </div>
+                                        <div class="block-content fs-lg">
+                                            <div class="row block-title">
+                                                <span>Nama Rekening : {{$data->nama_rekening}}</span>
+                                                <span>Kode Rekening : {{$data->kode_rekening}}</span>
+                                                <span>Jumlah Setoran : {{$data->jumlah}}</span>
+                                                <span>Tanggal Penerimaan : {{$data->tgl_penerimaan}}</span>
+                                                <span>Tanggal Penyetoran : {{$data->tgl_penyetoran}}</span>
+                                                <span>Bukti Bayar:</span>
+                                                <div class="bukti-bayar">
+                                                    <img src="{{url('images/'.$data->bukti_pembayaran)}}" alt="" style="height: 100px; width:auto">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <form action="{{route('updateStatus')}}" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="status" value="1" placeholder="Diverifikasi">
+                                            <input type="hidden" name="id_penerimaan" value="{{$data->id}}">
+                                            <div class="block-content block-content-full block-content-sm text-end border-top">
+                                                <button type="button" class="btn btn-alt-secondary" data-bs-dismiss="modal">Batal</button>
+                                                <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Verifikasi</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <!-- END Slide Left Modal -->
+                            @endif
+                            
+                        @empty
+                        @endforelse
                     </tbody>
                 </table>
             </div>
@@ -100,4 +161,11 @@
 
     <!-- Page JS Code -->
     <script src="{{ asset('assets/js/pages/be_tables_datatables.min.js') }}"></script>
+    <script type="text/javascript">
+        jQuery(function() {
+          jQuery('#upt_id').change(function() {
+              this.form.submit();
+          });
+      });
+    </script>
 @endpush
