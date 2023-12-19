@@ -76,14 +76,28 @@
                 </div>
             </div>
             <div class="block-content">
-                @if ($cek_retribusi_hari_ini == 0)
-                    {
-                    <p>Hi <b>{{ Auth::user()->name }}</b>, anda belum mengimput data retribusi hari ini, segera lakukan
-                        pengimputan
-                        data s.d jam 24.00 WIB hari ini</p>
-                    }
-                @else
-                    <p>Hi <b>{{ Auth::user()->name }}</b>, anda sudah mengimput data retribusi hari ini, terima kasih</p>
+                @if (Auth::user()->hasRole('super admin|admin'))
+                    <p>Hi <b>{{ Auth::user()->name }},</b> Anda login sebagai <b>Super Admin</b>. Anda dapat mengakses semua
+                        menu yang ada di aplikasi ini.</p>
+                @elseif(Auth::user()->hasRole('opd|upt'))
+                    <p>Hi <b>{{ Auth::user()->name }},</b>
+                        Anda login sebagai @if (Auth::user()->hasRole('opd'))
+                            OPD
+                        @else
+                            UPT
+                        @endif dengan email <b>{{ Auth::user()->email }}</b> <br> <i
+                            class="fa fa-clock"></i>
+                        @if ($cek_retribusi_hari_ini_per_user == false)
+                            <span class="text-danger">Anda belum memasukkan data retribusi untuk hari ini.
+                                Mohon
+                                segera
+                                lakukan penginputan data hingga pukul 24.00 WIB hari ini.</span>
+                        @else
+                            <span>Anda sudah memasukkan data retribusi untuk hari ini.
+                                Terima
+                                kasih
+                                atas kerjasamanya.</span>
+                        @endif
                 @endif
             </div>
         </div>

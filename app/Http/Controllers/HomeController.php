@@ -32,7 +32,7 @@ class HomeController extends Controller
             'jumlah_pendapatan_penerimaan_hari_ini' => Retribusi::whereDate('created_at', date('Y-m-d'))->sum('jumlah'),
 
             // mengecek apakah user sudah input retribusi hari ini atau belum
-            'cek_retribusi_hari_ini' => Retribusi::whereDate('created_at', date('Y-m-d'))->count() > 0 ? 'true' : 'false',
+            'cek_retribusi_hari_ini_per_user' => Retribusi::where('user_id', auth()->user()->id)->whereDate('created_at', date('Y-m-d'))->count(),
 
         ]);
     }

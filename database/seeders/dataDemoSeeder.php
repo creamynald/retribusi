@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Pemda\Jabatan;
-use App\Models\Pemda\Pangkat;
+use App\Models\Pemda\Opd;
+use App\Models\Pemda\Upt;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,36 +14,25 @@ class dataDemoSeeder extends Seeder
      */
     public function run(): void
     {
-        Pangkat::insert([
+        Opd::insert([
             [
-                'golongan' => 'Honorer',
-                'pangkat' => 'Pegawai Honorer',
+                'nama' => 'OPD Example',
+                'alamat' => 'Jl. Example',
+                'no_telp' => '081234567890',
+                'kode_pos' => '12345',
+                'website' => 'https://example.com',
             ],
-            [
-                'golongan' => 'Ia',
-                'pangkat' => 'Juru Muda',
-            ],
-            [
-                'golongan' => 'IIb',
-                'pangkat' => 'Pengatur Muda Tk.I',
-            ],
-            [
-                'golongan' => 'IIIc',
-                'pangkat' => 'Penata',
-            ]
         ]);
 
-        Jabatan::insert([
+        Upt::insert([
             [
-                'nama' => 'Staf',
+                'opd_id' => '1', // '1' is the id of the opd created above
+                'nama' => 'UPT Example',
+                'alamat' => 'Jl. Example',
+                'no_telp' => '081234567890',
+                'kode_pos' => '12345',
+                'website' => 'https://example.com',
             ],
-            [
-                'nama' => 'Staf Honorer',
-            ],
-
-            [
-                'nama' => 'Bendahara Penerimaan',
-            ]
         ]);
     }
 }

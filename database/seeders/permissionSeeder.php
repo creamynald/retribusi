@@ -55,12 +55,15 @@ class permissionSeeder extends Seeder
         $create_user_opd = \App\Models\User::factory()->create([
             'name' => 'Example OPD',
             'email' => 'opd@retribusi.test',
+            'opd_id' => '1',
         ]);
         $create_user_opd->assignRole($opd);
         
         $create_user_upt = \App\Models\User::factory()->create([
             'name' => 'Example UPT',
             'email' => 'upt@retribusi.test',
+            'opd_id' => '1',
+            'upt_id' => '1',
         ]);
         $create_user_upt->assignRole($upt);
     }
