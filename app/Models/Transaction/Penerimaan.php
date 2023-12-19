@@ -11,6 +11,7 @@ class Penerimaan extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
+        'upt_id',
         'periode',
         'kode_rekening',
         'nama_rekening',
