@@ -51,13 +51,8 @@
                         <div class="content content-full overflow-hidden">
                             <!-- Header -->
                             <div class="py-4 text-center">
-                                <a class="link-fx fw-bold" href="index.html">
-                                    <i class="fa fa-fire"></i>
-                                    <span class="fs-4 text-body-color">CMS</span><span class="fs-4">{{
-                                        config('app.name') }}</span>
-                                </a>
-                                <h1 class="h3 fw-bold mt-4 mb-2">Welcome to Your Dashboard</h1>
-                                <h2 class="h5 fw-medium text-muted mb-0">It’s a great day today!</h2>
+                                <h1 class="h3 fw-bold mt-4 mb-2">{{ config('app.name') }}</h1>
+                                <h2 class="h5 fw-medium text-muted mb-0">Sistem Informasi Pelaporan Retribusi Daerah</h2>
                             </div>
                             <!-- END Header -->
 

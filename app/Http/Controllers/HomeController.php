@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\User;
+use App\Models\Transaction\Penerimaan as Retribusi;
+
 class HomeController extends Controller
 {
     /**
@@ -23,6 +26,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('backend.dashboard', [
+            'jmlh_pengguna' => User::count(),
+
+            'jumlah_pendapatan_penerimaan_hari_ini' => Retribusi::whereDate('created_at', date('Y-m-d'))->sum('jumlah'),
+
+            // mengecek apakah user sudah input retribusi hari ini atau belum
+            'cek_retribusi_hari_ini' => Retribusi::whereDate('created_at', date('Y-m-d'))->count() > 0 ? 'true' : 'false',
+
+        ]);
     }
 }
