@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Transaction\Penerimaan;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\File;
 class PenerimaanController extends Controller
 {
     /**
@@ -20,20 +20,21 @@ class PenerimaanController extends Controller
         if (auth()->user()->upt_id == null) {
             // Mendapatkan data UPT berdasarkan opd_id
             $upt = User::whereNotNull('upt_id')->where('opd_id', auth()->user()->opd_id)->get();
+            // Cek apakah terdapat upt_id pada url
             if (isset($_GET['upt_id'])) {
-                $penerimaan = Penerimaan::where('upt_id', $_GET['upt_id'])->get();
+                $penerimaan = Penerimaan::where('upt_id', $_GET['upt_id'])->latest()->get();
             }else{
                 // Melakukan pengambilan data upt id untuk kebutuhan whereIn agar data semua upt dibawah OPD dapat ditampilkan
                $data_upt = User::whereNotNull('upt_id')->where('opd_id', auth()->user()->opd_id)->select('upt_id')->get(); //
                 // Menampilkan data Penerimaan Berdasarkan upt id yang berada di bawah OPD yang login
-               $penerimaan = Penerimaan::whereIn('upt_id', $data_upt)->get();
+               $penerimaan = Penerimaan::whereIn('upt_id', $data_upt)->latest()->get(); //
             }
         } 
         // Jika user login sebagai UPT
         else{
             $upt = null;
             // Menampilkan data penerimaan berdasarkan upt yang login
-            $penerimaan = $penerimaan = Penerimaan::where('user_id', auth()->user()->id)->get();
+            $penerimaan = $penerimaan = Penerimaan::where('user_id', auth()->user()->id)->latest()->get();
         }
         return view('backend.transaction.penerimaan.index', compact('penerimaan','upt'));
     }
@@ -73,7 +74,10 @@ class PenerimaanController extends Controller
             'jumlah.required' => 'Jumlah Setoran harus diisi'
         ]);
         $data = $request->all();
+        $setoran = explode(",",$request->jumlah); //memecah angka jika terdapat koma pada bilangan ribuan
+        $s = implode($setoran); //menyatukan kembali menjadi angka utuh tanpa koma
         $data['user_id'] = Auth::user()->id;
+        $data['jumlah'] = $s;
         $data['status'] = 'Belum Diverifikasi';
 
         if ($image = $request->file('bukti_pembayaran')) {
@@ -99,7 +103,6 @@ class PenerimaanController extends Controller
      */
     public function edit(Penerimaan $penerimaan)
     {
-        // $penerimaan = new Penerimaan();
         return view('backend.transaction.penerimaan.form', compact('penerimaan'));
     }
 
@@ -108,8 +111,6 @@ class PenerimaanController extends Controller
      */
     public function update(Request $request, Penerimaan $penerimaan)
     {
-        //
-        // dd($request->all());
         $request->validate([
             'periode' => 'required',
             'kode_rekening' => 'required',
@@ -148,12 +149,14 @@ class PenerimaanController extends Controller
      */
     public function destroy(Request $request, Penerimaan $penerimaan)
     {
+        // Mengambil nama file sesuai id data yang akan dihapus
         $get_file = Penerimaan::select('bukti_pembayaran')->whereId($penerimaan->id)->first();
-        // if (File::exists(public_path($get_file))) {
-        //     dd('ada');
-        // }else{
-        //     dd('gaada');
-        // }
+        // Cek apakah file gambar tersedia
+        if (File::exists('images/'.$get_file->bukti_pembayaran)) {
+            // jika tersedia lakukan penghapusan
+            File::delete('images/'.$get_file->bukti_pembayaran);
+        }
+        // Delete Data
         $penerimaan->delete();
         return back()->with('success', 'Selamat data berhasil dihapus');
     }
