@@ -79,9 +79,10 @@
                             <label class="form-label" for="jumlah">Jumlah Setoran</label>
                             <div class="input-group">
                                 <span class="input-group-text">Rp</span>
-                                <input type="number" class="form-control" id="jumlah" name="jumlah"
-                                    value="{{ old('jumlah') ?? $penerimaan->jumlah }}" autofocus placeholder="Jumlah Setoran">
-                              </div>
+                                <input type="text" class="form-control" id="jumlah" name="jumlah"
+                                    value="{{ old('jumlah') ?? $penerimaan->jumlah }}" autofocus placeholder="Jumlah Setoran" onkeyup="this.value=addcommas(this.value);">
+                                </div>
+                                <small style="color: green;">*Tanda koma menunjukkan angka ribuan</small>
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -114,4 +115,16 @@
     <script src="{{ asset('assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
     <script src="{{ asset('assets/js/plugins/flatpickr/flatpickr.min.js')}}"></script>
     <script>Codebase.helpersOnLoad(['js-flatpickr', 'jq-datepicker', 'jq-maxlength', 'jq-select2', 'jq-rangeslider', 'jq-masked-inputs', 'jq-pw-strength']);</script>
+    
+    <script type="text/javascript">
+
+        function addcommas(x) {
+        //remove commas
+        retVal = x ? parseFloat(x.replace(/,/g, '')) : 0;
+
+        //apply formatting
+        return retVal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+    </script>
+
 @endpush
