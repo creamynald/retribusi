@@ -15,8 +15,8 @@
 
                 @if (auth()->user()->upt_id == null)
                 <form action="" class="d-flex gap-2">
-                    <select name="upt_id" id="upt_id" class="form-select">
-                        <option value="">--Pilih UPT--</option>
+                    <select class="js-select2 form-select" id="val-select2" name="upt_id" data-placeholder="Pilih UPT.." style="width: 250px;">
+                        <option></option>
                         @foreach ($upt as $item)                        
                             <option value="{{$item->upt_id}}" @if (isset($_GET['upt_id'])) @if($_GET['upt_id'] == $item->upt_id) selected @endif @endif>{{$item->name}}</option>
                         @endforeach
@@ -51,7 +51,7 @@
                                 <td class="d-none d-sm-table-cell">{{ $data->nama_rekening }}</td>
                                 <td class="d-none d-sm-table-cell">{{ $data->tgl_penerimaan }}</td>
                                 <td class="d-none d-sm-table-cell">{{ $data->tgl_penyetoran }}</td>
-                                <td class="d-none d-sm-table-cell">{{ $data->jumlah }}</td>
+                                <td class="d-none d-sm-table-cell">@rp($data->jumlah)</td>
                                 <td class="text-center">
                                     @if ($data->status == 'Belum Diverifikasi')
                                         <span class="badge bg-danger">Belum Diverifikasi</span>
@@ -84,7 +84,7 @@
                             @if (auth()->user()->upt_id == null)    
                             <!-- Slide Left Modal -->
                             <div class="modal fade" id="modal-slideleft{{$data->id}}" tabindex="-1" role="dialog" aria-labelledby="modal-slideleft" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-slideleft modal-xl" role="document">
+                                <div class="modal-dialog modal-dialog-slideleft" role="document">
                                 <div class="modal-content">
                                     <div class="block block-rounded shadow-none mb-0">
                                         <div class="block-header block-header-default">
@@ -97,24 +97,38 @@
                                         </div>
                                         <div class="block-content fs-lg">
                                             <div class="row block-title">
-                                                <span>Nama Rekening : {{$data->nama_rekening}}</span>
-                                                <span>Kode Rekening : {{$data->kode_rekening}}</span>
-                                                <span>Jumlah Setoran : {{$data->jumlah}}</span>
-                                                <span>Tanggal Penerimaan : {{$data->tgl_penerimaan}}</span>
-                                                <span>Tanggal Penyetoran : {{$data->tgl_penyetoran}}</span>
-                                                <span>Bukti Bayar:</span>
-                                                <div class="bukti-bayar">
-                                                    <img src="{{url('images/'.$data->bukti_pembayaran)}}" alt="" style="height: 100px; width:auto">
+                                                <div class="row d-flex">
+                                                    <div class="col-6">Nama Rekening</div>
+                                                    <div class="col-6">: {{$data->nama_rekening}}</div>
+                                                </div>
+                                                <div class="row d-flex">
+                                                    <div class="col-6">Kode Rekening</div>
+                                                    <div class="col-6">: {{$data->kode_rekening}}</div>
+                                                </div>
+                                                <div class="row d-flex">
+                                                    <div class="col-6">Jumlah Setoran</div>
+                                                    <div class="col-6">: @rp($data->jumlah)</div>
+                                                </div>
+                                                <div class="row d-flex">
+                                                    <div class="col-6">Tanggal Penerimaan</div>
+                                                    <div class="col-6">: {{$data->tgl_penerimaan}}</div>
+                                                </div>                                                
+                                                <div class="row d-flex">
+                                                    <div class="col-6">Tanggal Penyetoran</div>
+                                                    <div class="col-6">: {{$data->tgl_penyetoran}}</div>
+                                                </div>
+                                                <div class="col-12 mt-2 mb-2">
+                                                    <img src="{{url('images/'.$data->bukti_pembayaran)}}" alt="" class="img-fluid mx-auto d-block">
                                                 </div>
                                             </div>
                                         </div>
                                         <form action="{{route('updateStatus')}}" method="post" enctype="multipart/form-data">
                                             @csrf
-                                            <input type="hidden" name="status" value="1" placeholder="Diverifikasi">
+                                            <input type="hidden" name="status" value="@if($data->status != 1){{'1'}}@else{{'Belum Diverifikasi'}}@endif" placeholder="Diverifikasi">
                                             <input type="hidden" name="id_penerimaan" value="{{$data->id}}">
                                             <div class="block-content block-content-full block-content-sm text-end border-top">
                                                 <button type="button" class="btn btn-alt-secondary" data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Verifikasi</button>
+                                                <button type="submit" class="btn @if($data->status == 1){{'btn-danger'}}@else{{'btn-success'}}@endif" data-bs-dismiss="modal">@if($data->status == 1){{'Batalkan Verifikasi'}}@else{{'Verifikasi'}}@endif</button>
                                             </div>
                                         </form>
                                     </div>
@@ -140,6 +154,7 @@
     <link rel="stylesheet" href="{{ asset('assets/js/plugins/datatables-buttons-bs5/css/buttons.bootstrap5.min.css') }}">
     <link rel="stylesheet"
         href="{{ asset('assets/js/plugins/datatables-responsive-bs5/css/responsive.bootstrap5.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/js/plugins/select2/css/select2.css') }}">
 @endpush
 
 @push('js')
@@ -158,14 +173,17 @@
     <script src="{{ asset('assets/js/plugins/datatables-buttons-pdfmake/vfs_fonts.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/datatables-buttons/buttons.print.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/select2/js/select2.full.min.js') }}"></script>
 
     <!-- Page JS Code -->
     <script src="{{ asset('assets/js/pages/be_tables_datatables.min.js') }}"></script>
     <script type="text/javascript">
         jQuery(function() {
-          jQuery('#upt_id').change(function() {
+          jQuery('#val-select2').change(function() {
               this.form.submit();
           });
       });
     </script>
+    <!-- Page JS Helpers (Select2 plugin) -->
+    <script>Codebase.helpersOnLoad(['jq-select2']);</script>
 @endpush
