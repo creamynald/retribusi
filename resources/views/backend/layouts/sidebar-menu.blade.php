@@ -9,7 +9,7 @@
         <ul class="nav-main-submenu">
             @hasrole('super admin|admin')
                 <li class="nav-main-item">
-                    <a class="nav-main-link {{ request()->segment(3) == 'data-umum' ? 'active' : '' }}" href="#">
+                    <a class="nav-main-link {{ request()->segment(3) == 'data-umum' ? 'active' : '' }}" href="{{ route('pemda.index') }}">
                         <span class="nav-main-link-name">Data Umum Pemda</span>
                     </a>
                 </li>

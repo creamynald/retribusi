@@ -51,20 +51,43 @@ class permissionSeeder extends Seeder
             'email' => 'admin@retribusi.test',
         ]);
         $create_user_admin->assignRole($admin);
-        
-        $create_user_opd = \App\Models\User::factory()->create([
-            'name' => 'Example OPD',
-            'email' => 'opd@retribusi.test',
+
+        $create_user_opd_damkar = \App\Models\User::factory()->create([
+            'name' => 'Nama Admin Damkar',
+            'email' => 'damkar@retribusi.test',
             'opd_id' => '1',
         ]);
-        $create_user_opd->assignRole($opd);
-        
-        $create_user_upt = \App\Models\User::factory()->create([
-            'name' => 'Example UPT',
-            'email' => 'upt@retribusi.test',
+        $create_user_opd_damkar->assignRole($opd);
+
+        $create_user_opd_dinkes = \App\Models\User::factory()->create([
+            'name' => 'Nama Admin Dinkes',
+            'email' => 'dinkes@retribusi.test',
+            'opd_id' => '2',
+        ]);
+        $create_user_opd_dinkes->assignRole($opd);
+
+        $create_user_upt_damkar_bks = \App\Models\User::factory()->create([
+            'name' => 'nama admin UPT damkar bantan',
+            'email' => 'upt_damkar_bengkalis@retribusi.test',
             'opd_id' => '1',
             'upt_id' => '1',
         ]);
-        $create_user_upt->assignRole($upt);
+        $create_user_upt_damkar_bks->assignRole($upt);
+
+        $create_user_upt_damkar_duri = \App\Models\User::factory()->create([
+            'name' => 'nama admin UPT damkar duri',
+            'email' => 'upt_damkar_duri@retribusi.test',
+            'opd_id' => '1',
+            'upt_id' => '2',
+        ]);
+        $create_user_upt_damkar_duri->assignRole($upt);
+
+        $create_user_upt_pksms_bks = \App\Models\User::factory()->create([
+            'name' => 'nama admin UPT Puskesmas Bengkalis',
+            'email' => 'upt_puskesmas_bengkalis@retribusi.test',
+            'opd_id' => '2',
+            'upt_id' => '3',
+        ]);
+        $create_user_upt_pksms_bks->assignRole($upt);
     }
 }
