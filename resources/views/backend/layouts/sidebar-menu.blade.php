@@ -46,7 +46,7 @@
         </a>
         <ul class="nav-main-submenu">
             <li class="nav-main-item">
-                <a class="nav-main-link" href="javascript:void(0)">
+                <a class="nav-main-link" href="{{ route('register-rek.index') }}">
                     <span class="nav-main-link-name">Input Kode Rekening</span>
                 </a>
             </li>
@@ -77,17 +77,17 @@
     </a>
     <ul class="nav-main-submenu">
         <li class="nav-main-item">
-            <a class="nav-main-link" href="#">
+            <a class="nav-main-link" href="{{ route('harian.index') }}">
                 <span class="nav-main-link-name">Harian</span>
             </a>
         </li>
         <li class="nav-main-item">
-            <a class="nav-main-link" href="#">
+            <a class="nav-main-link" href="{{ route('bulanan.index') }}">
                 <span class="nav-main-link-name">Bulanan</span>
             </a>
         </li>
         <li class="nav-main-item">
-            <a class="nav-main-link" href="#">
+            <a class="nav-main-link" href="{{ route('tahunan.index') }}">
                 <span class="nav-main-link-name">Tahunan</span>
             </a>
         </li>
