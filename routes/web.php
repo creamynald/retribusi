@@ -8,7 +8,7 @@ use App\Http\Controllers\HomeController as DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('frontend.layouts.app');
+    return Redirect::to('/login');
 });
 
 Route::middleware('has.role')

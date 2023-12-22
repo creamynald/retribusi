@@ -132,6 +132,9 @@ class PenerimaanController extends Controller
         ]);
 
         $data = $request->all();
+        $setoran = explode(",",$request->jumlah); //memecah angka jika terdapat koma pada bilangan ribuan
+        $s = implode($setoran); //menyatukan kembali menjadi angka utuh tanpa koma
+        $data['jumlah'] = $s;
         if ($image = $request->file('bukti_pembayaran')) {
             $destinationPath = 'images/';
             $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
