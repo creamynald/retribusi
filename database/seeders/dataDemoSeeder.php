@@ -17,25 +17,25 @@ class dataDemoSeeder extends Seeder
     {
         Opd::insert([
             [
-                'nama' => 'Dinas Pemadam Kebakaran Kabupaten Bengkalis',
+                'nama' => 'Dinas Perdagangan dan Perindustrian Kab. Bengkalis',
                 'alamat' => 'Jl. Jenderal Ahmad Yani, Bengkalis',
                 'no_telp' => '(0766) 23113',
                 'kode_pos' => '28711',
-                'website' => 'https://damkar.bengkaliskab.go.id/',
+                'website' => 'https://disperindag.bengkaliskab.go.id/',
             ],
             [
-                'nama' => 'Dinas Kesehatan Kabupaten Bengkalis',
+                'nama' => 'Dinas Perhubungan Kab. Bengkalis',
                 'alamat' => 'Jl. Pertanian, Senggoro, Kec. Bengkalis',
                 'no_telp' => '(0766) 23113',
                 'kode_pos' => '28711',
-                'website' => 'https://dinkes.bengkaliskab.go.id/',
+                'website' => 'https://dishub.bengkaliskab.go.id/',
             ],
         ]);
 
         Upt::insert([
             [
                 'opd_id' => '1', // '1' is the id of the opd created above
-                'nama' => 'UPT DAMKAR KEC. BANTAN',
+                'nama' => 'UPT DISPERINDAG KEC. BANTAN',
                 'alamat' => 'Jl. Bantan, Bengkalis',
                 'no_telp' => '081234567890',
                 'kode_pos' => '12345',
@@ -43,7 +43,7 @@ class dataDemoSeeder extends Seeder
             ],
             [
                 'opd_id' => '1', // '1' is the id of the opd created above
-                'nama' => 'UPT DAMKAR KEC. PINGGIR',
+                'nama' => 'UPT DISPERINDAG KEC. PINGGIR',
                 'alamat' => 'Jl. Pinggir, Bengkalis-Duri',
                 'no_telp' => '081234567890',
                 'kode_pos' => '12345',
@@ -51,7 +51,7 @@ class dataDemoSeeder extends Seeder
             ],
             [
                 'opd_id' => '2', // '2' is the id of the opd created above
-                'nama' => 'UPT Puskesmas Bengkalis',
+                'nama' => 'UPT DISHUB KEC. BENGKALIS',
                 'alamat' => 'Jl. Awang Mahmuda, Bengkalis',
                 'no_telp' => '081234567890',
                 'kode_pos' => '12345',
@@ -68,7 +68,7 @@ class dataDemoSeeder extends Seeder
                 'kode_pos' => '28711',
                 'fax' => '(0761) 21201',
                 'website' => 'https://bengkaliskab.go.id',
-                'target_retribusi_tahun_ini' => '2000000000',
+                'target_retribusi_tahun_ini' => '145864904',
             ],
         ]);
     }

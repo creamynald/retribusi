@@ -8,7 +8,8 @@
             </span>
             <a class="link-fx fw-bold tracking-wide mx-auto" href="{{ config('app.url') }}">
                 <span class="smini-hidden">
-                    <i class="fa fa-fire text-primary"></i>
+                    <img class="img-fluid" src="{{ asset('assets/media/logo/logo_pemkab.png') }}" alt="logo pemkab"
+                        width="15%">
                     <span class="fs-4 text-dual">{{ config('app.name') }}</span>
                 </span>
             </a>
@@ -45,6 +46,11 @@
             </ul>
         </div>
         <!-- END Side Navigation -->
+        <div class="content-side content-side-full">
+            <img src="{{ asset('assets/media/logo/logo_bermasa.png') }}" alt="logo bermasa" width="80%">
+        </div>
+
+
     </div>
     <!-- END Sidebar Scrolling -->
 </div>

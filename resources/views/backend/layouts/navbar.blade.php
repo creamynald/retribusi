@@ -10,9 +10,7 @@
 
         <!-- Open Search Section -->
         <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-        <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="layout" data-action="header_search_on">
-            <i class="fa fa-fw fa-search"></i>
-        </button>
+        <span>{{ config('app.subname') }}</span>
         <!-- END Open Search Section -->
     </div>
     <!-- END Left Section -->
