@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pemda\Data;
 use Illuminate\Http\Request;
 
 use App\Models\User;
@@ -33,6 +34,8 @@ class HomeController extends Controller
 
             // mengecek apakah user sudah input retribusi hari ini atau belum
             'cek_retribusi_hari_ini_per_user' => Retribusi::where('user_id', auth()->user()->id)->whereDate('created_at', date('Y-m-d'))->count(),
+
+            'target_retribusi_tahun_ini' => Data::first()->target_retribusi_tahun_ini,
 
         ]);
     }

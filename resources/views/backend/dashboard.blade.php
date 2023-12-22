@@ -9,7 +9,7 @@
                             <i class="fa fa-wallet fa-2x opacity-25 text-primary-lighter"></i>
                         </div>
                         <div>
-                            <div class="fs-3 fw-semibold text-white">Rp. 32.000.000</div>
+                            <div class="fs-3 fw-semibold text-white">@rp($target_retribusi_tahun_ini)</div>
                             <div class="fs-sm fw-semibold text-muted text-white-75">Target Pajak & Retribusi Tahun 2023</div>
                         </div>
                     </div>
