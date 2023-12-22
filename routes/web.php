@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\backend\Laporan\laporanController;
 use App\Http\Controllers\backend\PemerintahDaerah\{OPDController, pemdaController, UPTController, usersController};
 use App\Http\Controllers\backend\permissions\{assignController, roleController, permissionController, userController};
+use App\Http\Controllers\backend\Rekening\rekController;
 use App\Http\Controllers\backend\user\profileController;
 use App\Http\Controllers\backend\Transaction\PenerimaanController;
 use App\Http\Controllers\HomeController as DashboardController;
@@ -31,6 +33,11 @@ Route::middleware('has.role')
             Route::resource('profile', profileController::class);
         });
 
+        // kode rekening
+        Route::prefix('rekening')->group(function () {
+            Route::resource('register-rek', rekController::class);
+        });
+
         // transaksi
         Route::prefix('transaksi')->group(function () {
             Route::post('penerimaan/update-status', [PenerimaanController::class, 'updateStatus'])->name('updateStatus');
@@ -43,6 +50,13 @@ Route::middleware('has.role')
             Route::resource('upt', UPTController::class);
             Route::resource('pengguna', usersController::class);
             Route::resource('pemda', pemdaController::class);
+        });
+
+        // laporan
+        Route::prefix('laporan')->group(function () {
+            Route::resource('harian', laporanController::class);
+            Route::resource('bulanan', laporanController::class);
+            Route::resource('tahunan', laporanController::class);
         });
     });
 
