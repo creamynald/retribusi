@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Pemda\Data;
 use App\Models\Pemda\Opd;
 use App\Models\Pemda\Upt;
+use App\Models\Rekening\rekening;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -69,6 +70,30 @@ class dataDemoSeeder extends Seeder
                 'fax' => '(0761) 21201',
                 'website' => 'https://bengkaliskab.go.id',
                 'target_retribusi_tahun_ini' => '145864904',
+            ],
+        ]);
+
+        rekening::insert([
+            [
+                'nama_bank' => 'Bank Riau Kepri',
+                'atas_nama' => 'Badan Pendapatan Daerah Kabupaten Bengkalis',
+                'nomor_rekening' => '1234567890',
+                'opd_id' => '1',
+                'upt_id' => '1',
+            ],
+            [
+                'nama_bank' => 'Bank Riau Kepri',
+                'atas_nama' => 'Badan Pendapatan Daerah Kabupaten Bengkalis',
+                'nomor_rekening' => '1234567890',
+                'opd_id' => '1',
+                'upt_id' => '2',
+            ],
+            [
+                'nama_bank' => 'Bank Riau Kepri',
+                'atas_nama' => 'Badan Pendapatan Daerah Kabupaten Bengkalis',
+                'nomor_rekening' => '1234567890',
+                'opd_id' => '2',
+                'upt_id' => '3',
             ],
         ]);
     }

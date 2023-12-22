@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('rekenings', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_bank');
+            $table->string('atas_nama');
+            $table->string('nomor_rekening');
+            $table->string('opd_id')->nullable();
+            $table->string('upt_id')->nullable();
             $table->timestamps();
         });
     }
