@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('kode_pos');
             $table->string('fax');
             $table->string('website');
+            $table->string('target_retribusi_tahun_ini');
+            $table->timestamps();
         });
     }
 

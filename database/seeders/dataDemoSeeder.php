@@ -68,6 +68,7 @@ class dataDemoSeeder extends Seeder
                 'kode_pos' => '28711',
                 'fax' => '(0761) 21201',
                 'website' => 'https://bengkaliskab.go.id',
+                'target_retribusi_tahun_ini' => '2000000000',
             ],
         ]);
     }

@@ -3,14 +3,14 @@
     <div class="content">
         <div class="row">
             <div class="col-6 col-xl-3">
-                <a class="block block-rounded block-link-shadow text-end" href="javascript:void(0)">
-                    <div class="block-content block-content-full d-sm-flex justify-content-between align-items-center">
+                <a class="block block-rounded block-link-shadow text-end bg-primary" href="javascript:void(0)">
+                    <div class="block-content block-content-full d-sm-flex justify-content-between align-items-center ">
                         <div class="d-none d-sm-block">
-                            <i class="fa fa-wallet fa-2x opacity-25"></i>
+                            <i class="fa fa-wallet fa-2x opacity-25 text-primary-lighter"></i>
                         </div>
                         <div>
-                            <div class="fs-3 fw-semibold">Rp. 32.000.000</div>
-                            <div class="fs-sm fw-semibold text-muted">Target Pajak & Retribusi Tahun 2023</div>
+                            <div class="fs-3 fw-semibold text-white">Rp. 32.000.000</div>
+                            <div class="fs-sm fw-semibold text-muted text-white-75">Target Pajak & Retribusi Tahun 2023</div>
                         </div>
                     </div>
                 </a>
