@@ -4,16 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-    <title>{{ config('app.name') }} - Bootstrap 5 Admin Template &amp; UI Framework</title>
+    <title>{{ config('app.name') }} - {{ config('app.subname') }}</title>
 
-    <meta name="description" content="Codebase - Bootstrap 5 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
-    <meta name="author" content="pixelcave">
+    <meta name="description" content="Siparida - {{ config('app.subname') }}">
+    <meta name="author" content="creamynald">
     <meta name="robots" content="noindex, nofollow">
 
     <!-- Open Graph Meta -->
-    <meta property="og:title" content="Codebase - Bootstrap 5 Admin Template &amp; UI Framework">
-    <meta property="og:site_name" content="Codebase">
-    <meta property="og:description" content="Codebase - Bootstrap 5 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
+    <meta property="og:title" content="Siparida - {{ config('app.subname') }}">
+    <meta property="og:site_name" content="Siparida">
+    <meta property="og:description" content="Siparida - {{ config('app.subname') }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="">
     <meta property="og:image" content="">
@@ -27,7 +27,7 @@
 
     <!-- Stylesheets -->
     @stack('css')
-    <!-- Codebase framework -->
+    <!-- Siparida framework -->
     <link rel="stylesheet" id="css-main" href="{{ asset('assets/css/codebase.min.css') }}">
 
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
@@ -99,10 +99,10 @@
         <div class="content py-3">
           <div class="row fs-sm">
             <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-end">
-              Crafted with <i class="fa fa-heart text-danger"></i> by <a class="fw-semibold" href="{{ config('app.url') }}" target="_blank">rere</a>
+              <a class="fw-semibold" href="{{ config('app.url') }}" target="_blank">{{ config('app.name') }}</a> &copy; <span data-toggle="year-copy"></span>
             </div>
             <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-start">
-              <a class="fw-semibold" href="{{ config('app.url') }}" target="_blank">{{ config('app.name') }}</a> &copy; <span data-toggle="year-copy"></span>
+              {{-- Crafted with <i class="fa fa-heart text-danger"></i> by <a class="fw-semibold" href="{{ config('app.url') }}" target="_blank">codebase</a> --}}
             </div>
           </div>
         </div>

@@ -5,18 +5,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-    <title>{{ config('app.name', 'CMS') }} - {{ env('APP_SUBNAME') }}</title>
+    <title>{{ config('app.name', 'CMS') }} - {{ config('app.subname') }}</title>
 
     <meta name="description"
-        content="Codebase - {{ env('APP_SUBNAME') }} created by anak daerah bengkales">
-    <meta name="author" content="pixelcave">
+        content="Codebase - {{ config('app.subname') }} created by anak daerah bengkales">
+    <meta name="author" content="creamynald">
     <meta name="robots" content="noindex, nofollow">
 
     <!-- Open Graph Meta -->
-    <meta property="og:title" content="Codebase - {{ env('APP_SUBNAME') }}">
-    <meta property="og:site_name" content="Codebase">
+    <meta property="og:title" content="{{ config('app.name', 'CMS') }} - {{ config('app.subname') }}">
+    <meta property="og:site_name" content="{{ config('app.name', 'CMS') }}">
     <meta property="og:description"
-        content="Codebase - {{ env('APP_SUBNAME') }} created by anak daerah bengkales">
+        content="{{ config('app.name', 'CMS') }} - {{ config('app.subname') }} created by anak daerah bengkales">
     <meta property="og:type" content="website">
     <meta property="og:url" content="">
     <meta property="og:image" content="">
