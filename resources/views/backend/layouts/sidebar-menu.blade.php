@@ -47,12 +47,7 @@
         <ul class="nav-main-submenu">
             <li class="nav-main-item">
                 <a class="nav-main-link" href="javascript:void(0)">
-                    <span class="nav-main-link-name">submenu 1</span>
-                </a>
-            </li>
-            <li class="nav-main-item">
-                <a class="nav-main-link" href="javascript:void(0)">
-                    <span class="nav-main-link-name">submenu 2</span>
+                    <span class="nav-main-link-name">Input Kode Rekening</span>
                 </a>
             </li>
         </ul>
