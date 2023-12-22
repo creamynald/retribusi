@@ -12,7 +12,17 @@ class UPTController extends Controller
 {
     public function index()
     {
-       if (auth()->user()->hasRole(Role::findByName('super admin'))) {
+        if (
+            auth()
+                ->user()
+                ->hasRole(Role::findByName('super admin'))
+        ) {
+            $data = Upt::all();
+        } elseif (
+            auth()
+                ->user()
+                ->hasRole(Role::findByName('admin'))
+        ) {
             $data = Upt::all();
         } else {
             $data = Upt::where('opd_id', auth()->user()->opd_id)->get();
