@@ -68,7 +68,7 @@ class permissionSeeder extends Seeder
 
         $create_user_upt_damkar_bks = \App\Models\User::factory()->create([
             'name' => 'Bowo',
-            'email' => 'upt_disperindag_bengkalis@retribusi.test',
+            'email' => 'upt_disperindag_bantan@retribusi.test',
             'opd_id' => '1',
             'upt_id' => '1',
         ]);
@@ -76,7 +76,7 @@ class permissionSeeder extends Seeder
 
         $create_user_upt_damkar_duri = \App\Models\User::factory()->create([
             'name' => 'Aldy',
-            'email' => 'upt_disperindag_bantan@retribusi.test',
+            'email' => 'upt_disperindag_pinggir@retribusi.test',
             'opd_id' => '1',
             'upt_id' => '2',
         ]);
