@@ -16,4 +16,8 @@ class Opd extends Model
         'website',
         'alamat',
     ];
+    public function upt()
+    {
+        return $this->hasMany(Upt::class);
+    }
 }
