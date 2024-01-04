@@ -18,7 +18,7 @@
                     <select class="js-select2 form-select" id="val-select2" name="upt_id" data-placeholder="Pilih UPT.." style="width: 250px;">
                         <option></option>
                         @foreach ($upt as $item)                        
-                            <option value="{{$item->upt_id}}" @if (isset($_GET['upt_id'])) @if($_GET['upt_id'] == $item->upt_id) selected @endif @endif>{{$item->name}}</option>
+                            <option value="{{$item->id}}" @if (isset($_GET['upt_id'])) @if($_GET['upt_id'] == $item->id) selected @endif @endif>{{$item->nama}}</option>
                         @endforeach
                     </select>
                 </form>
