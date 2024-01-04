@@ -54,9 +54,9 @@ Route::middleware('has.role')
 
         // laporan
         Route::prefix('laporan')->group(function () {
+            Route::get('bulanan', [laporanController::class, 'monthly_report'])->name('monthly_report');
+            Route::get('tahunan', [laporanController::class, 'annual_report'])->name('annual_report');
             Route::resource('harian', laporanController::class);
-            Route::resource('bulanan', laporanController::class);
-            Route::resource('tahunan', laporanController::class);
         });
     });
 
