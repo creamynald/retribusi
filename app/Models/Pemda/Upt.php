@@ -22,4 +22,12 @@ class Upt extends Model
     {
         return $this->belongsTo(Opd::class);
     }
+
+    public function users(){
+        return $this->hasMany(User::class);
+    }
+
+    public function penerimaans(){
+        return $this->hasMany(Penerimaan::class);
+    }
 }
