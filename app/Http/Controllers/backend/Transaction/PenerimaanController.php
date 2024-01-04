@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Transaction\Penerimaan;
 use App\Models\User;
+use App\Models\Pemda\Upt;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 class PenerimaanController extends Controller
@@ -17,9 +19,9 @@ class PenerimaanController extends Controller
     public function index()
     {
         //If user logged in as a OPD
-        if (auth()->user()->upt_id == null) {
+        if (auth()->user()->hasRole(Role::findByName('opd'))) {
             // Mendapatkan data UPT berdasarkan opd_id
-            $upt = User::whereNotNull('upt_id')->where('opd_id', auth()->user()->opd_id)->get();
+            $upt = Upt::where('opd_id', auth()->user()->opd_id)->get();
             // Cek apakah terdapat upt_id pada url
             if (isset($_GET['upt_id'])) {
                 $penerimaan = Penerimaan::where('upt_id', $_GET['upt_id'])->latest()->get();
@@ -30,6 +32,14 @@ class PenerimaanController extends Controller
                $penerimaan = Penerimaan::whereIn('upt_id', $data_upt)->latest()->get(); //
             }
         } 
+        elseif (auth()->user()->hasRole(Role::findByName('admin')) || auth()->user()->hasRole(Role::findByName('super admin'))) {
+            $upt = Upt::all();
+            if (isset($_GET['upt_id'])) {
+                $penerimaan = Penerimaan::where('upt_id', $_GET['upt_id'])->latest()->get();
+            }else{
+               $penerimaan = Penerimaan::where('tgl_penyetoran', date("Y-m-d"))->latest()->get(); //
+            }
+        }
         // Jika user login sebagai UPT
         else{
             $upt = null;
