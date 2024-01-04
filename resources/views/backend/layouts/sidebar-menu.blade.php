@@ -82,12 +82,12 @@
             </a>
         </li>
         <li class="nav-main-item">
-            <a class="nav-main-link" href="{{ route('bulanan.index') }}">
+            <a class="nav-main-link" href="{{ route('monthly_report') }}">
                 <span class="nav-main-link-name">Bulanan</span>
             </a>
         </li>
         <li class="nav-main-item">
-            <a class="nav-main-link" href="{{ route('tahunan.index') }}">
+            <a class="nav-main-link" href="{{ route('annual_report') }}">
                 <span class="nav-main-link-name">Tahunan</span>
             </a>
         </li>
