@@ -28,12 +28,12 @@ and we are :
 2. for demo purpose, u can use :
     - super admin is superadmin@retribusi.test
     - admin is admin@retribusi.test
-    - also demo user for OPD damkar is damkar@retribusi.test
-    - also demo user for UPT damkar is upt_damkar_bengkalis@retribusi.test
-    - also demo user for UPT damkar is upt_damkar_duri@retribusi.test
+    - also demo user for OPD DISPERINDAG is disperindag@retribusi.test
+    - also demo user for UPT DISPERINDAG is upt_disperindag_bantan@retribusi.test
+    - also demo user for UPT DISPERINDAG is upt_disperindag_pinggir@retribusi.test
     - AND
-    - also demo user for OPD damkar is dinkes@retribusi.test
-    - also demo user for UPT damkar is upt_puskesmas_bengkalis@retribusi.test
+    - also demo user for OPD DISHUB is dishub@retribusi.test
+    - also demo user for UPT DISHUB is upt_dishub_bengkalis@retribusi.test
     - and then, default password is _password_
 
 THANKS
