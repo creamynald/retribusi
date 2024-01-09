@@ -34,9 +34,18 @@ class UPTController extends Controller
 
     public function create()
     {
+        
+        if(auth()->user()->hasRole(Role::findByName('super admin'))){
+            $data_opd = Opd::all();
+        }elseif(auth()->user()->hasRole(Role::findByName('admin'))){
+            $data_opd = Opd::all();
+        }else{
+            $data_opd = Opd::where('id', auth()->user()->opd_id)->get();
+        }
         return view('backend.pemerintah-daerah.upt.create', [
             'data' => new Upt(),
-            'data_opd' => Opd::all(),
+            'data_opd' => $data_opd,
+
         ]);
     }
 
@@ -58,10 +67,16 @@ class UPTController extends Controller
 
     public function edit(Upt $upt)
     {
+        if(auth()->user()->hasRole(Role::findByName('super admin'))){
+            $data_opd = Opd::all();
+        }elseif(auth()->user()->hasRole(Role::findByName('admin'))){
+            $data_opd = Opd::all();
+        }else{
+            $data_opd = Opd::where('id', auth()->user()->opd_id)->get();
+        }
         return view('backend.pemerintah-daerah.upt.edit', [
             'data' => $upt,
-            'data_opd' => Opd::all(),
-            'submit' => 'Ubah',
+            'data_opd' => $data_opd,
         ]);
     }
 
@@ -78,7 +93,7 @@ class UPTController extends Controller
 
         return redirect()
             ->route('upt.index')
-            ->with('success', 'Data berhasil diubah');
+            ->with('success', 'Data berhasil diupdate');
     }
 
     public function destroy(Upt $upt)

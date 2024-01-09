@@ -7,8 +7,7 @@
 
     <title>{{ config('app.name', 'CMS') }} - {{ config('app.subname') }}</title>
 
-    <meta name="description"
-        content="Codebase - {{ config('app.subname') }} created by anak daerah bengkales">
+    <meta name="description" content="Codebase - {{ config('app.subname') }} created by anak daerah bengkales">
     <meta name="author" content="creamynald">
     <meta name="robots" content="noindex, nofollow">
 
@@ -24,7 +23,8 @@
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
     <link rel="shortcut icon" href="{{ asset('assets/media/favicons/favicon.png') }}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/media/favicons/favicon-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192"
+        href="{{ asset('assets/media/favicons/favicon-192x192.png') }}">
     <link rel="apple-touch-icon" sizes="180x180"
         href="{{ asset('assets/media/favicons/apple-touch-icon-180x180.png') }}">
     <!-- END Icons -->
@@ -52,7 +52,8 @@
                             <!-- Header -->
                             <div class="py-4 text-center">
                                 <h1 class="h3 fw-bold mt-4 mb-2">{{ config('app.name') }}</h1>
-                                <h2 class="h5 fw-medium text-muted mb-0">Sistem Informasi Pelaporan Retribusi Daerah</h2>
+                                <h2 class="h5 fw-medium text-muted mb-0">Sistem Informasi Pelaporan Retribusi Daerah
+                                </h2>
                             </div>
                             <!-- END Header -->
 
@@ -61,6 +62,13 @@
                             <!-- For more examples you can check out https://github.com/jzaefferer/jquery-validation -->
                             @yield('content')
                             <!-- END Sign In Form -->
+
+                            <!-- make me copyright after this lane -->
+                            <div class="font-size-sm text-center text-muted py-3">
+                                <strong>{{ config('app.name') }}</strong> &copy; <span data-toggle="year-copy"></span>
+
+                                <a class="font-w600 text-muted" href="https://bapenda.bengkaliskab.go.id/">BAPENDA Kab. Bengkalis</a>
+                            </div>
                         </div>
                     </div>
                 </div>

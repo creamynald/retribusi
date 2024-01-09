@@ -22,8 +22,8 @@
                             <i class="fa fa-wallet fa-2x opacity-25"></i>
                         </div>
                         <div>
-                            <div class="fs-3 fw-semibold text-white">Rp. {{ $jumlah_pendapatan_penerimaan_hari_ini }}</div>
-                            <div class="fs-sm fw-semibold text-muted text-white-75">Realiassi Pajak & Retribusi s/d hari ini
+                            <div class="fs-3 fw-semibold text-white">@rp($jumlah_pendapatan_penerimaan_hari_ini)</div>
+                            <div class="fs-sm fw-semibold text-muted text-white-75">Realisasi Pajak & Retribusi s/d hari ini
                             </div>
                         </div>
                     </div>

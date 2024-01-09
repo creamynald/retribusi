@@ -9,16 +9,21 @@
         <ul class="nav-main-submenu">
             @hasrole('super admin|admin')
                 <li class="nav-main-item">
-                    <a class="nav-main-link {{ request()->segment(3) == 'data-umum' ? 'active' : '' }}" href="{{ route('pemda.index') }}">
+                    <a class="nav-main-link {{ request()->segment(3) == 'data-umum' ? 'active' : '' }}"
+                        href="{{ route('pemda.index') }}">
                         <span class="nav-main-link-name">Data Umum Pemda</span>
                     </a>
                 </li>
+            @endhasrole
+            @hasrole('super admin|admin|opd')
                 <li class="nav-main-item">
                     <a class="nav-main-link {{ request()->segment(3) == 'pengguna' ? 'active' : '' }}"
                         href="{{ route('pengguna.index') }}">
                         <span class="nav-main-link-name">Pengguna Aplikasi</span>
                     </a>
                 </li>
+            @endhasrole
+            @hasrole('super admin|admin')
                 <li class="nav-main-item">
                     <a class="nav-main-link {{ request()->segment(3) == 'opd' ? 'active' : '' }}"
                         href="{{ route('opd.index') }}">
@@ -46,8 +51,29 @@
         </a>
         <ul class="nav-main-submenu">
             <li class="nav-main-item">
-                <a class="nav-main-link" href="{{ route('register-rek.index') }}">
+                <a class="nav-main-link" href="#">
                     <span class="nav-main-link-name">Input Kode Rekening</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="nav-main-item {{ request()->segment(2) == 'jenis-pajak-daerah' ? 'open' : '' }}">
+        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false"
+            href="#">
+            <i class="nav-main-link-icon fa fa-sort"></i>
+            <span class="nav-main-link-name">Jenis Pajak Daerah</span>
+        </a>
+        <ul class="nav-main-submenu">
+            <li class="nav-main-item">
+                <a class="nav-main-link {{ request()->segment(3) == 'retribusi' ? 'active' : '' }}"
+                    href="{{ route('retribusi.index') }}">
+                    <span class="nav-main-link-name">Retribusi</span>
+                </a>
+            </li>
+            <li class="nav-main-item">
+                <a class="nav-main-link {{ request()->segment(3) == 'objek-retribusi' ? 'active' : '' }}"
+                    href="{{ route('objek-retribusi.index') }}">
+                    <span class="nav-main-link-name">Objek Retribusi</span>
                 </a>
             </li>
         </ul>
@@ -78,7 +104,7 @@
     <ul class="nav-main-submenu">
         <li class="nav-main-item">
             <a class="nav-main-link" href="{{ route('harian.index') }}">
-                <span class="nav-main-link-name">Harian</span>
+                <span class="nav-main-link-name">Harianx</span>
             </a>
         </li>
         <li class="nav-main-item">

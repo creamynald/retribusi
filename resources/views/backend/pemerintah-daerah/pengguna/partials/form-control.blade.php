@@ -18,8 +18,7 @@
                                 <option></option>
                                 @foreach ($opds as $row)
                                     <option value="{{ $row->id }}"
-                                        {{ $row->id == $data->opd_id ? 'selected' : '' }}
-                                        >{{ $row->nama }}</option>
+                                        {{ $row->id == $data->opd_id ? 'selected' : '' }}>{{ $row->nama }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -32,11 +31,11 @@
                                 <option></option>
                                 @foreach ($upts as $row)
                                     <option value="{{ $row->id }}"
-                                        {{ $row->id == $data->upt_id ? 'selected' : '' }}
-                                        >{{ $row->nama }}</option>
+                                        {{ $row->id == $data->upt_id ? 'selected' : '' }}>{{ $row->nama }}</option>
                                 @endforeach
                             </select>
-                        </div></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md">
@@ -44,6 +43,9 @@
                             <label class="form-label" for="name">Nama</label>
                             <input type="text" class="form-control" id="name" name="name"
                                 value="{{ old('name') ?? $data->name }}">
+                            @error('name')
+                                <small class="error mt-2 text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -53,15 +55,21 @@
                             <label class="form-label" for="email">Email</label>
                             <input type="text" class="form-control" id="email" name="email"
                                 value="{{ old('email') ?? $data->email }}">
+                            @error('email')
+                                <small class="error mt-2 text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6">
-                        
                         <div class="mb-4">
                             <label class="form-label" for="password">Password</label>
                             <input type="password" class="form-control" id="password" name="password"
-                                value="{{ old('password') ?? $data->password }}">
-                            <span class="text-danger">*disarankan password lebih dari 8 karakter.</span>
+                                value="{{ old('password') }}">
+                            <!-- error-->
+                            @error('password')
+                                <small class="error mt-2 text-danger">{{ $message }}</small>
+                            @enderror
+                            <!-- end error -->
                         </div>
                     </div>
                 </div>

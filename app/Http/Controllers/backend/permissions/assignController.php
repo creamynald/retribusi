@@ -40,6 +40,7 @@ class assignController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         request()->validate([
             'role' => 'required',
             'permissions' => 'array|required'

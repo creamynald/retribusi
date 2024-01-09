@@ -35,7 +35,7 @@ class pemdaController extends Controller
 
         $data->update([
             'target_retribusi_tahun_ini' => $implode,
-        ]);
+        ]); 
 
         return redirect()->back()->with('success', 'Data berhasil diubah');
 

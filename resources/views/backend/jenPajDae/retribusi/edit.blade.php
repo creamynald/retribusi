@@ -1,16 +1,16 @@
 @extends('backend.layouts.app')
 
-@section('title', 'Pemerintah Daerah')
-@section('subTitle', 'Pangkat')
+@section('title', 'Jenis Pajak Daerah')
+@section('subTitle', 'Retribusi')
 
 @section('content')
     <div class="content">
         <h2 class="content-heading">@yield('title')</h2>
         <!-- Dynamic Table Full -->
-        <form action="{{ route('pengguna.update', $data) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('retribusi.update', $data) }}" method="POST">
             @csrf
             @method('PUT')
-            @include('backend.pemerintah-daerah.pengguna.partials.form-control')
+            @include('backend.jenPajDae.retribusi.partials.form-control', ['submit' => 'Simpan'])
         </form>
         <!-- END Dynamic Table Full -->
     </div>

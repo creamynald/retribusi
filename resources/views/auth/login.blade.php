@@ -27,15 +27,6 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="block-content block-content-full bg-body-light text-center d-flex justify-content-between">
-            <a class="fs-sm fw-medium link-fx text-muted me-2 mb-1 d-inline-block" href="{{ route('register') }}">
-                <i class="fa fa-plus opacity-50 me-1"></i> Create Account
-            </a>
-            <a class="fs-sm fw-medium link-fx text-muted me-2 mb-1 d-inline-block"
-                href="{{ route('password.request') }}">
-                Forgot Your Password?
-            </a>
-        </div> --}}
     </div>
 </form>
 @endsection

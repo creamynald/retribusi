@@ -3,7 +3,8 @@
 use App\Http\Controllers\backend\Laporan\laporanController;
 use App\Http\Controllers\backend\PemerintahDaerah\{OPDController, pemdaController, UPTController, usersController};
 use App\Http\Controllers\backend\permissions\{assignController, roleController, permissionController, userController};
-use App\Http\Controllers\backend\Rekening\rekController;
+use App\Http\Controllers\backend\jenisPajakDaerah\{jenRetController, objRetController};
+// use App\Http\Controllers\backend\Rekening\rekController;
 use App\Http\Controllers\backend\user\profileController;
 use App\Http\Controllers\backend\Transaction\PenerimaanController;
 use App\Http\Controllers\HomeController as DashboardController;
@@ -34,8 +35,14 @@ Route::middleware('has.role')
         });
 
         // kode rekening
-        Route::prefix('rekening')->group(function () {
-            Route::resource('register-rek', rekController::class);
+        // Route::prefix('rekening')->group(function () {
+        //     Route::resource('register-rek', rekController::class);
+        // });
+
+        // jenis pajak daerah
+        Route::prefix('jenis-pajak-daerah')->group(function () {
+            Route::resource('retribusi', jenRetController::class);
+            Route::resource('objek-retribusi', objRetController::class);
         });
 
         // transaksi

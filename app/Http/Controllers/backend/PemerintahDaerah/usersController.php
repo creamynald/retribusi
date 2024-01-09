@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\backend\PemerintahDaerah;
 
 use App\Http\Controllers\Controller;
-use App\Models\Pemda\Jabatan;
 use App\Models\Pemda\Opd;
-use App\Models\Pemda\Pangkat;
 use App\Models\Pemda\Upt;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,17 +15,40 @@ class usersController extends Controller
 {
     public function index()
     {
+        if(auth()->user()->hasRole(Role::findByName('super admin'))){
+            $data_user = User::all();
+        }elseif(auth()->user()->hasRole(Role::findByName('admin'))){
+            $data_user = User::all()->except(1);
+        }elseif(auth()->user()->hasRole(Role::findByName('opd'))){
+            $data_user = User::where('opd_id', auth()->user()->opd_id)->get();
+        }elseif(auth()->user()->hasRole(Role::findByName('upt'))){
+            $data_user = User::where('upt_id', auth()->user()->upt_id)->get();
+        }
+        
         return view('backend.pemerintah-daerah.pengguna.index', [
-            'datas' => User::all()->except(1),
+            'datas' => $data_user,
         ]);
     }
 
     public function create()
     {
+        //kondisi mencari data upd saat login sebagai super admin
+        if(auth()->user()->hasRole(Role::findByName('super admin'))){
+            $data_opd = Opd::all();
+            $data_upt = Upt::all();
+        //kondisi mencari data upd saat login sebagai admin
+        }elseif(auth()->user()->hasRole(Role::findByName('admin'))){
+            $data_opd = Opd::all();
+            $data_upt = Upt::all();
+        }else{
+            $data_opd = Opd::where('id', auth()->user()->opd_id)->get();
+            $data_upt = Upt::where(with(new Upt)->getTable().'.opd_id', auth()->user()->opd_id)->get();
+        }
+
         return view('backend.pemerintah-daerah.pengguna.create', [
             'data' => new User(),
-            'opds' => Opd::all(),
-            'upts' => Upt::all(),
+            'opds' => $data_opd,
+            'upts' => $data_upt,
         ]);
     }
 
@@ -35,7 +56,7 @@ class usersController extends Controller
     {
         $data = request()->validate([
             'name' => 'required',
-            'email' => 'required|unique:users',
+            'email' => 'required',
             'password' => 'required',
             'opd_id' => 'nullable',
             'upt_id' => 'nullable',
@@ -46,9 +67,9 @@ class usersController extends Controller
         $user = User::create($data);
 
         if(request()->has('opd_id') && request()->get('upt_id') == NULL) {
-            $user->assignRole('opd');
+            $user->syncRoles('opd');
         } elseif (request()->has('opd_id') && request()->has('upt_id')) {
-            $user->assignRole('upt');
+            $user->syncRoles('upt');
         }
 
         $user->save();
@@ -60,29 +81,46 @@ class usersController extends Controller
 
     public function edit($id)
     {
+        $data = User::findOrFail($id);
+
+        //kondisi mencari data upd saat login sebagai super admin
+        if(auth()->user()->hasRole(Role::findByName('super admin'))){
+            $data_opd = Opd::all();
+            $data_upt = Upt::all();
+        //kondisi mencari data upd saat login sebagai admin
+        }elseif(auth()->user()->hasRole(Role::findByName('admin'))){
+            $data_opd = Opd::all();
+            $data_upt = Upt::all();
+        }else{
+            $data_opd = Opd::where('id', auth()->user()->opd_id)->get();
+            $data_upt = Upt::where(with(new Upt)->getTable().'.opd_id', auth()->user()->opd_id)->get();
+        }
+
         return view('backend.pemerintah-daerah.pengguna.edit', [
-            'data' => User::findOrFail($id),
-            'opds' => Opd::all(),
-            'upts' => Upt::all(),
+            'data' => $data,
+            'opds' => $data_opd,
+            'upts' => $data_upt,
             'submit' => 'Ubah'
         ]);
     }
-
-    public function update(Request $request, User $user)
+    
+    public function update(Request $request, $id)
     {
         $data = request()->validate([
             'name' => 'required',
             'email' => 'required',
-            'password' => 'nullable',
+            'password' => 'required',
             'opd_id' => 'nullable',
             'upt_id' => 'nullable',
+        ],[
+            'name.required' => 'Nama tidak boleh kosong',
+            'email.required' => 'Email tidak boleh kosong',
+            'password.required' => 'Password tidak boleh kosong',
         ]);
+        
+        $data['password'] = bcrypt($data['password']);
 
-        if(request()->has('password')) {
-            $data['password'] = bcrypt($data['password']);
-        } else {
-            $data['password'] = $user->password;
-        }
+        $user = User::findOrFail($id);
 
         $user->update($data);
 
@@ -95,17 +133,6 @@ class usersController extends Controller
         $user->save();
 
         Alert::success('Berhasil', 'Data berhasil diubah');
-
-        return to_route('pengguna.index');
-    }
-
-    public function destroy($id)
-    {
-        $user = User::findOrFail($id);
-
-        $user->delete();
-
-        Alert::success('Berhasil', 'Data berhasil dihapus');
 
         return to_route('pengguna.index');
     }
