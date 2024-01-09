@@ -117,6 +117,11 @@
                 <span class="nav-main-link-name">Tahunan</span>
             </a>
         </li>
+        <li class="nav-main-item">
+            <a class="nav-main-link" href="{{ route('rekap') }}">
+                <span class="nav-main-link-name">Rekap</span>
+            </a>
+        </li>
     </ul>
 </li>
 @role('super admin')

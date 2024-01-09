@@ -64,6 +64,7 @@ Route::middleware('has.role')
             Route::get('bulanan', [laporanController::class, 'monthly_report'])->name('monthly_report');
             Route::get('tahunan', [laporanController::class, 'annual_report'])->name('annual_report');
             Route::resource('harian', laporanController::class);
+            route::get('rekap', [laporanController::class, 'rekapitulasi'])->name('rekap');
         });
     });
 
