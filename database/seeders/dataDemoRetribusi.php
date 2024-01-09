@@ -49,7 +49,7 @@ class dataDemoRetribusi extends Seeder
                 'jenis_retribusi_id' => '2',
                 'kode' => '4.1.02.02.01.0007',
                 'nama' => 'Retribusi pemakaian alat',
-            ],re
+            ],
             [
                 'jenis_retribusi_id' => '3',
                 'kode' => '4.1.02.03.03.0001',
