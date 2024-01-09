@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             dataDemoSeeder::class,
             permissionSeeder::class,
+            dataDemoRetribusi::class,
         ]);
     }
 }
