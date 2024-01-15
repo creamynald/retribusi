@@ -15,7 +15,7 @@
 
                 @if (auth()->user()->upt_id == null)
                 <form action="" class="d-flex gap-2">
-                    <select class="js-select2 form-select" id="val-select2" name="upt_id" data-placeholder="Pilih UPT.." style="width: 250px;">
+                    <select class="js-select2 form-select" id="val-select2" name="upt_id" data-placeholder="Pilih UPT.." style="width: auto;">
                         <option></option>
                         @foreach ($upt as $item)                        
                             <option value="{{$item->id}}" @if (isset($_GET['upt_id'])) @if($_GET['upt_id'] == $item->id) selected @endif @endif>{{$item->nama}}</option>
@@ -47,8 +47,8 @@
                         @forelse ($penerimaan as $index => $data)
                             <tr>
                                 <td class="text-center">{{ $index + 1 }}</td>
-                                <td class="fw-semibold">{{ $data->kode_rekening }}</td>
-                                <td class="d-none d-sm-table-cell">{{ $data->nama_rekening }}</td>
+                                <td class="fw-semibold">{{ $data->objek_retribusi->kode }}</td>
+                                <td class="d-none d-sm-table-cell">{{ $data->objek_retribusi->nama }}</td>
                                 <td class="d-none d-sm-table-cell">{{ $data->tgl_penerimaan }}</td>
                                 <td class="d-none d-sm-table-cell">{{ $data->tgl_penyetoran }}</td>
                                 <td class="d-none d-sm-table-cell">@rp($data->jumlah)</td>
@@ -83,7 +83,7 @@
 
                             @if (auth()->user()->upt_id == null)    
                             <!-- Slide Left Modal -->
-                            <div class="modal fade" id="modal-slideleft{{$data->id}}" tabindex="-1" role="dialog" aria-labelledby="modal-slideleft" aria-hidden="true">
+                            <div class="modal modal-lg fade" id="modal-slideleft{{$data->id}}" tabindex="-1" role="dialog" aria-labelledby="modal-slideleft" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-slideleft" role="document">
                                 <div class="modal-content">
                                     <div class="block block-rounded shadow-none mb-0">
@@ -98,16 +98,16 @@
                                         <div class="block-content fs-lg">
                                             <div class="row block-title">
                                                 <div class="row d-flex">
-                                                    <div class="col-6">Nama Rekening</div>
-                                                    <div class="col-6">: {{$data->nama_rekening}}</div>
+                                                    <div class="col-6" style="font-weight: 900;">Jumlah Setoran</div>
+                                                    <div class="col-6" style="font-weight: 900;">: @rp($data->jumlah)</div>
                                                 </div>
                                                 <div class="row d-flex">
                                                     <div class="col-6">Kode Rekening</div>
-                                                    <div class="col-6">: {{$data->kode_rekening}}</div>
+                                                    <div class="col-6">: {{$data->objek_retribusi->kode}}</div>
                                                 </div>
                                                 <div class="row d-flex">
-                                                    <div class="col-6">Jumlah Setoran</div>
-                                                    <div class="col-6">: @rp($data->jumlah)</div>
+                                                    <div class="col-6">Nama Rekening</div>
+                                                    <div class="col-6">: {{$data->objek_retribusi->nama}}</div>
                                                 </div>
                                                 <div class="row d-flex">
                                                     <div class="col-6">Tanggal Penerimaan</div>
@@ -118,7 +118,11 @@
                                                     <div class="col-6">: {{$data->tgl_penyetoran}}</div>
                                                 </div>
                                                 <div class="col-12 mt-2 mb-2">
-                                                    <img src="{{url('images/'.$data->bukti_pembayaran)}}" alt="" class="img-fluid mx-auto d-block">
+                                                    @if (mime_content_type('images/'.$data->bukti_pembayaran)== 'image/jpeg' || mime_content_type('images/'.$data->bukti_pembayaran)== 'image/jpg' || mime_content_type('images/'.$data->bukti_pembayaran)== 'image/png')                                                        
+                                                        <img src="{{url('images/'.$data->bukti_pembayaran)}}" alt="" class="img-fluid mx-auto d-block">
+                                                    @else
+                                                        <iframe src="https://docs.google.com/gview?url={{url('images/'.$data->bukti_pembayaran)}}&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -154,7 +158,7 @@
     <link rel="stylesheet" href="{{ asset('assets/js/plugins/datatables-buttons-bs5/css/buttons.bootstrap5.min.css') }}">
     <link rel="stylesheet"
         href="{{ asset('assets/js/plugins/datatables-responsive-bs5/css/responsive.bootstrap5.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/js/plugins/select2/css/select2.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/js/plugins/select2/css/select2.css') }}">
 @endpush
 
 @push('js')
