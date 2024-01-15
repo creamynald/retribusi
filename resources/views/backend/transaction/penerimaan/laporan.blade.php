@@ -17,12 +17,12 @@
                     <select class="js-select2 form-select" id="val-select2" name="upt_id" data-placeholder="Pilih UPT.." style="width: 250px;">
                         <option></option>
                         @foreach ($upt as $item)                        
-                            <option value="{{$item->id}}" @if (isset($_GET['upt_id'])) @if($_GET['upt_id'] == $item->upt_id) selected @endif @endif>{{$item->nama}}</option>
+                            <option value="{{$item->id}}" @if (isset($_GET['upt_id'])) @if($_GET['upt_id'] == $item->id) selected @endif @endif>{{$item->nama}}</option>
                         @endforeach
                     </select>
                 @endif
                 </form>
-                <a href="{{url('admin/laporan/tahunan')}}"><button class="btn btn-sm btn-info m-2 p-2">Reset</button></a>
+                <a href="{{url('admin/laporan/harian')}}"><button class="btn btn-sm btn-info m-2 p-2">Reset</button></a>
             </div>
             <div class="block-content block-content-full">
                 <!-- DataTables functionality is initialized with .js-dataTable-full class in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
