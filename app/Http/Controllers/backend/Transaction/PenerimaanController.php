@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Transaction\Penerimaan;
 use App\Models\User;
 use App\Models\Pemda\Upt;
+use App\Models\jenisRetribusiDaerah\objekRetribusi;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -56,7 +57,8 @@ class PenerimaanController extends Controller
     {
         //
         $penerimaan = new Penerimaan();
-        return view('backend.transaction.penerimaan.form', compact('penerimaan'));
+        $objek_retribusi = objekRetribusi::all();
+        return view('backend.transaction.penerimaan.form', compact('penerimaan','objek_retribusi'));
     }
 
     /**
@@ -65,9 +67,7 @@ class PenerimaanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'periode' => 'required',
-            'kode_rekening' => 'required',
-            'nama_rekening' => 'required',
+            'objekretribusi_id' => 'required',
             'tgl_penerimaan' => 'required',
             'tgl_penyetoran' => 'required',
             'bukti_pembayaran' => 'required|mimes:jpg,jpeg,png,pdf',
@@ -84,6 +84,7 @@ class PenerimaanController extends Controller
             'jumlah.required' => 'Jumlah Setoran harus diisi'
         ]);
         $data = $request->all();
+        
         $setoran = explode(",",$request->jumlah); //memecah angka jika terdapat koma pada bilangan ribuan
         $s = implode($setoran); //menyatukan kembali menjadi angka utuh tanpa koma
         $data['user_id'] = Auth::user()->id;
@@ -113,7 +114,8 @@ class PenerimaanController extends Controller
      */
     public function edit(Penerimaan $penerimaan)
     {
-        return view('backend.transaction.penerimaan.form', compact('penerimaan'));
+        $objek_retribusi = objekRetribusi::all();
+        return view('backend.transaction.penerimaan.form', compact('penerimaan','objek_retribusi'));
     }
 
     /**
@@ -122,9 +124,7 @@ class PenerimaanController extends Controller
     public function update(Request $request, Penerimaan $penerimaan)
     {
         $request->validate([
-            'periode' => 'required',
-            'kode_rekening' => 'required',
-            'nama_rekening' => 'required',
+            'objekretribusi_id' => 'required',
             'tgl_penerimaan' => 'required',
             'tgl_penyetoran' => 'required',
             'bukti_pembayaran' => 'mimes:jpg,jpeg,png,pdf',
