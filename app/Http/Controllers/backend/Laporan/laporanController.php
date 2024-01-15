@@ -233,9 +233,10 @@ class laporanController extends Controller
     public function rekapitulasi()
     {
 
+        // dd(jenisRetribusi::all());
         // dd(jenisRetribusi::with(['objekRetribusi'])->get());
         return view('backend.transaction.rekap.index',[
-            'datas' => jenisRetribusi::with(['objekRetribusi'])->get(),
+            'datas' => jenisRetribusi::all(),
         ]);
     }
 }

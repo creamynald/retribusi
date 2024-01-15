@@ -38,44 +38,39 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($datas as $index => $retribusi)
-                                @foreach ($retribusi->objekRetribusi as $objek)
-                                    @foreach ($objek->penerimaans as $retribusi)
-                                    sadas
-                                    @endforeach
-                                @endforeach
-                            @endforeach
-                            {{-- <tr class="table-info" style="font-weight: 800;">
+                            <tr class="table-info" style="font-weight: 800;">
                                 <td class="text-center"></td>
-                                <td class="text-left">
-                                    4.1.02
-                                </td>
+                                <td class="text-left">4.1.02</td>
                                 <td>
                                     <p class="fw-semibold mb-1">Hasil Retribusi Daerah</p>
                                 </td>
                                 <td class="text-end"></td>
                                 <td class="text-end"></td>
                             </tr>
-                            <tr class="table-info" style="font-weight: 800;">
-                                <td class="text-center"></td>
-                                <td class="text-left">
-                                    4.1.02.01
-                                </td>
-                                <td>
-                                    <p class="fw-semibold mb-1">Hasil Retribusi Jasa Umum</p>
-                                </td>
-                                <td class="text-end"></td>
-                                <td class="text-end"></td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td class="text-left fw-bold">
-                                    4.1.02.01.02.0001
-                                </td>
-                                <td>Retribusi Pelayanan Persampahan/Kebersihan</td>
-                                <td class="text-end">1.750.000.000,00</td>
-                                <td class="text-end">61.074.000,00</td>
-                            </tr> --}}
+                            @foreach ($datas as $index => $retribusi)
+                                <tr class="table-info" style="font-weight: 800;">
+                                    <td class="text-center"></td>
+                                    <td class="text-left">{{ $retribusi->kode }}</td>
+                                    <td>
+                                        <p class="fw-semibold mb-1">{{ $retribusi->nama }}</p>
+                                    </td>
+                                    <td class="text-end"></td>
+                                    <td class="text-end"></td>
+                                </tr>
+                                @foreach ($retribusi->objekRetribusi as $objek)
+                                    @foreach ($objek->penerimaans as $retribusi)
+                                        <tr style="font-weight: 800;">
+                                            <td class="text-center">{{ $index + 1 }}</td>
+                                            <td class="text-left">{{ $objek->kode }}</td>
+                                            <td>
+                                                <p class="fw-semibold mb-1">{{ $objek->nama }}</p>
+                                            </td>
+                                            <td class="text-end"></td>
+                                            <td class="text-end">{{ $retribusi->jumlah }}</td>
+                                        </tr>
+                                    @endforeach
+                                @endforeach
+                            @endforeach
                             <tr class="table-info">
                                 <td colspan="3" class="fw-bold text-uppercase text-end">Jumlah Hasil Retribusi Daerah
                                 </td>
