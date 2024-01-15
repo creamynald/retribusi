@@ -19,4 +19,9 @@ class objekRetribusi extends Model
     {
         return $this->belongsTo(jenisRetribusi::class);
     }
+
+    public function penerimaans()
+    {
+        return $this->hasMany(Penerimaan::class);
+    }
 }
