@@ -34,13 +34,20 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="mb-4">
-                            <label class="form-label" for="periode">Periode</label>
-                            <input type="text" class="form-control" id="periode" name="periode"
-                                value="{{ old('periode') ?? $penerimaan->periode }}" autofocus placeholder="Periode">
+                            <label class="form-label" for="periode">Objek Retribusi</label>
+                            <select class="js-select2 form-select" id="val-select2" name="objekretribusi_id" data-placeholder="Pilih Objek Retribusi...">
+                                <option></option>
+                                @foreach ($objek_retribusi as $item)                        
+                                    <option value="{{$item->id}}" @selected(old('objekretribusi_id') == $item) @if ($item->id == $penerimaan->objekretribusi_id)
+                                        selected
+                                    @endif>{{$item->nama}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+
+                {{-- <div class="row">
                     <div class="col-sm-6">
                         <div class="mb-4">
                             <label class="form-label" for="kode_rekening">Kode Rekening</label>
@@ -57,7 +64,7 @@
                                 value="{{ old('nama_rekening') ?? $penerimaan->nama_rekening }}">
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="row">
                     <div class="col-sm-6">
@@ -73,7 +80,7 @@
                             <label class="form-label" for="tgl_penyetoran">Tanggal Penyetoran</label>
                             <input type="text" class="js-flatpickr form-control" id="tgl_penyetoran"
                                 name="tgl_penyetoran" placeholder="Tanggal Penyetoran"
-                                value="{{ old('tgl_penyetoran') ?? $penerimaan->tgl_penyetoran }}">
+                                value="{{ old('tgl_penyetoran') ?? date("Y-m-d") }}" style="pointer-events: none; opacity: 80%;">
                         </div>
                     </div>
                 </div>
@@ -117,11 +124,19 @@
     <link rel="stylesheet"
         href="{{ asset('assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/js/plugins/flatpickr/flatpickr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/js/plugins/select2/css/select2.css') }}">
 @endpush
 
 @push('js')
+    <!-- jQuery (required for DataTables plugin) -->
+    <script src="{{ asset('assets/js/lib/jquery.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+
     <script src="{{ asset('assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/flatpickr/flatpickr.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/select2/js/select2.full.min.js') }}"></script>
+    <!-- Page JS Helpers (Select2 plugin) -->
+    <script>Codebase.helpersOnLoad(['jq-select2']);</script>
     <script>
         Codebase.helpersOnLoad(['js-flatpickr', 'jq-datepicker', 'jq-maxlength', 'jq-select2', 'jq-rangeslider',
             'jq-masked-inputs', 'jq-pw-strength'
