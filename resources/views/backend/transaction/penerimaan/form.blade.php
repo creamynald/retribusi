@@ -35,10 +35,10 @@
                     <div class="col-sm-12">
                         <div class="mb-4">
                             <label class="form-label" for="periode">Objek Retribusi</label>
-                            <select class="js-select2 form-select" id="val-select2" name="objekretribusi_id" data-placeholder="Pilih Objek Retribusi...">
+                            <select class="js-select2 form-select" id="val-select2" name="objek_retribusi_id" data-placeholder="Pilih Objek Retribusi...">
                                 <option></option>
                                 @foreach ($objek_retribusi as $item)                        
-                                    <option value="{{$item->id}}" @selected(old('objekretribusi_id') == $item) @if ($item->id == $penerimaan->objekretribusi_id)
+                                    <option value="{{$item->id}}" @selected(old('objek_retribusi_id') == $item) @if ($item->id == $penerimaan->objek_retribusi_id)
                                         selected
                                     @endif>{{$item->nama}}</option>
                                 @endforeach

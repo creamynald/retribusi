@@ -67,7 +67,7 @@ class PenerimaanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'objekretribusi_id' => 'required',
+            'objek_retribusi_id' => 'required',
             'tgl_penerimaan' => 'required',
             'tgl_penyetoran' => 'required',
             'bukti_pembayaran' => 'required|mimes:jpg,jpeg,png,pdf',
@@ -124,7 +124,7 @@ class PenerimaanController extends Controller
     public function update(Request $request, Penerimaan $penerimaan)
     {
         $request->validate([
-            'objekretribusi_id' => 'required',
+            'objek_retribusi_id' => 'required',
             'tgl_penerimaan' => 'required',
             'tgl_penyetoran' => 'required',
             'bukti_pembayaran' => 'mimes:jpg,jpeg,png,pdf',

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\backend\Laporan;
 
 use App\Http\Controllers\Controller;
+use App\Models\jenisRetribusiDaerah\jenisRetribusi;
+use App\Models\jenisRetribusiDaerah\objekRetribusi;
 use Illuminate\Http\Request;
 use App\Models\Pemda\Opd;
 use App\Models\Pemda\Upt;
@@ -230,6 +232,10 @@ class laporanController extends Controller
 
     public function rekapitulasi()
     {
-        dd('kontol');
+
+        // dd(jenisRetribusi::with(['objekRetribusi'])->get());
+        return view('backend.transaction.rekap.index',[
+            'datas' => jenisRetribusi::with(['objekRetribusi'])->get(),
+        ]);
     }
 }
