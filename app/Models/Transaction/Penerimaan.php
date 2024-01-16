@@ -14,7 +14,7 @@ class Penerimaan extends Model
     protected $fillable = [
         'user_id',
         'upt_id',
-        'objekretribusi_id',
+        'objek_retribusi_id',
         'tgl_penerimaan',
         'tgl_penyetoran',
         'bukti_pembayaran',
@@ -29,8 +29,8 @@ class Penerimaan extends Model
         return $this->belongsTo(Upt::class,'upt_id');
     }
 
-    public function objek_retribusi(){
-        return $this->belongsTo(objekRetribusi::class, 'objekretribusi_id');
+    public function objekRetribusi(){
+        return $this->belongsTo(objekRetribusi::class,'objek_retribusi_id');
     }
 
     public static function total_retribusi($upt_id){

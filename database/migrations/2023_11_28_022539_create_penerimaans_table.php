@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('user_id')->constrained('users');
             $table->string('upt_id');
-            $table->string('objekretribusi_id');
+            $table->string('objek_retribusi_id');
             $table->date('tgl_penerimaan');
             $table->date('tgl_penyetoran');
             $table->string('bukti_pembayaran');
