@@ -92,7 +92,7 @@ class PenerimaanController extends Controller
         $data['status'] = 'Belum Diverifikasi';
 
         if ($image = $request->file('bukti_pembayaran')) {
-            $destinationPath = 'images/';
+            $destinationPath = public_path('public/Penerimaan');
             $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $postImage);
             $data['bukti_pembayaran'] = "$postImage";
@@ -146,7 +146,7 @@ class PenerimaanController extends Controller
         $s = implode($setoran); //menyatukan kembali menjadi angka utuh tanpa koma
         $data['jumlah'] = $s;
         if ($image = $request->file('bukti_pembayaran')) {
-            $destinationPath = 'images/';
+            $destinationPath = public_path('public/Penerimaan');
             $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $postImage);
             $data['bukti_pembayaran'] = "$postImage";

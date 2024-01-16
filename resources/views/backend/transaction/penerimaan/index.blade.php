@@ -118,10 +118,10 @@
                                                     <div class="col-6">: {{$data->tgl_penyetoran}}</div>
                                                 </div>
                                                 <div class="col-12 mt-2 mb-2">
-                                                    @if (mime_content_type('images/'.$data->bukti_pembayaran)== 'image/jpeg' || mime_content_type('images/'.$data->bukti_pembayaran)== 'image/jpg' || mime_content_type('images/'.$data->bukti_pembayaran)== 'image/png')                                                        
+                                                    @if (mime_content_type('public/Penerimaan/'.$data->bukti_pembayaran)== 'image/jpeg' || mime_content_type('public/Penerimaan/'.$data->bukti_pembayaran)== 'image/jpg' || mime_content_type('public/Penerimaan/'.$data->bukti_pembayaran)== 'image/png')                                                        
                                                         <img src="{{url('images/'.$data->bukti_pembayaran)}}" alt="" class="img-fluid mx-auto d-block">
                                                     @else
-                                                        <iframe src="https://docs.google.com/gview?url={{url('images/'.$data->bukti_pembayaran)}}&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe>
+                                                        <iframe src="https://docs.google.com/gview?url={{url('publicPenerimaan/'.$data->bukti_pembayaran)}}&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe>
                                                     @endif
                                                 </div>
                                             </div>
