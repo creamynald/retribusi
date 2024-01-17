@@ -101,11 +101,11 @@
                                                 </div>
                                                 <div class="row d-flex">
                                                     <div class="col-6">Kode Rekening</div>
-                                                    <div class="col-6">: {{$data->objek_retribusi->kode}}</div>
+                                                    <div class="col-6">: {{$data->objekRetribusi->kode}}</div>
                                                 </div>
                                                 <div class="row d-flex">
                                                     <div class="col-6">Nama Rekening</div>
-                                                    <div class="col-6">: {{$data->objek_retribusi->nama}}</div>
+                                                    <div class="col-6">: {{$data->objekRetribusi->nama}}</div>
                                                 </div>
                                                 <div class="row d-flex">
                                                     <div class="col-6">Tanggal Penerimaan</div>
@@ -117,9 +117,9 @@
                                                 </div>
                                                 <div class="col-12 mt-2 mb-2">
                                                     @if (mime_content_type('public/Penerimaan/'.$data->bukti_pembayaran)== 'image/jpeg' || mime_content_type('public/Penerimaan/'.$data->bukti_pembayaran)== 'image/jpg' || mime_content_type('public/Penerimaan/'.$data->bukti_pembayaran)== 'image/png')                                                        
-                                                        <img src="{{url('images/'.$data->bukti_pembayaran)}}" alt="" class="img-fluid mx-auto d-block">
+                                                        <img src="{{url('public/Penerimaan/'.$data->bukti_pembayaran)}}" alt="" class="img-fluid mx-auto d-block">
                                                     @else
-                                                        <iframe src="https://docs.google.com/gview?url={{url('publicPenerimaan/'.$data->bukti_pembayaran)}}&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe>
+                                                        <iframe src="https://docs.google.com/gview?url={{url('public/Penerimaan/'.$data->bukti_pembayaran)}}&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe>
                                                     @endif
                                                 </div>
                                             </div>
