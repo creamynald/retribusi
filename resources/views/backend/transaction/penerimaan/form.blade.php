@@ -104,6 +104,7 @@
                             <input type="file" class="form-control" id="bukti_pembayaran" name="bukti_pembayaran"
                                 placeholder="Bukti Pembayaran">
                         </div>
+                        <input type="text" value="{{$penerimaan->bukti_pembayaran}}" name="old_file">
                     </div>
                 </div>
             </div>

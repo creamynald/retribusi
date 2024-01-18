@@ -92,12 +92,12 @@ class PenerimaanController extends Controller
         $data['status'] = 'Belum Diverifikasi';
 
         if ($image = $request->file('bukti_pembayaran')) {
-            $destinationPath = public_path('public/Penerimaan');
-            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $postImage);
-            $data['bukti_pembayaran'] = "$postImage";
+            // Upload file
+            $filePath = $request->file('bukti_pembayaran')->store('uploads', 'public');
+            // Simpan data ke database
+            $data['bukti_pembayaran'] = $filePath;
+            Penerimaan::create($data);
         }
-        Penerimaan::create($data);
         return to_route('penerimaan.index')->with('success', 'Data berhasil disimpan');
     }
 
@@ -146,11 +146,13 @@ class PenerimaanController extends Controller
         $s = implode($setoran); //menyatukan kembali menjadi angka utuh tanpa koma
         $data['jumlah'] = $s;
         if ($image = $request->file('bukti_pembayaran')) {
-            $destinationPath = public_path('public/Penerimaan');
-            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $postImage);
-            $data['bukti_pembayaran'] = "$postImage";
-            Storage::delete($penerimaan->bukti_pembayaran);
+            if (Storage::exists('public/'.$request->old_file)) {
+                // File exists, delete it
+                Storage::delete('public/'.$request->old_file);
+            }
+            $filePath = $request->file('bukti_pembayaran')->store('uploads', 'public');
+            // Simpan data ke database
+            $data['bukti_pembayaran'] = $filePath;
         }
 
         $penerimaan->update($data);

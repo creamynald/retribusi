@@ -116,10 +116,15 @@
                                                     <div class="col-6">: {{$data->tgl_penyetoran}}</div>
                                                 </div>
                                                 <div class="col-12 mt-2 mb-2">
-                                                    @if (mime_content_type('public/Penerimaan/'.$data->bukti_pembayaran)== 'image/jpeg' || mime_content_type('public/Penerimaan/'.$data->bukti_pembayaran)== 'image/jpg' || mime_content_type('public/Penerimaan/'.$data->bukti_pembayaran)== 'image/png')                                                        
-                                                        <img src="{{url('public/Penerimaan/'.$data->bukti_pembayaran)}}" alt="" class="img-fluid mx-auto d-block">
+                                                    @php
+                                                        $fileExtension = pathinfo(url('storage/'.$data->bukti_pembayaran), PATHINFO_EXTENSION);
+                                                    @endphp
+                                                    @if (in_array(strtolower($fileExtension), ['jpg', 'jpeg', 'png']))
+                                                        <img src="{{url('storage/'.$data->bukti_pembayaran)}}" alt="" class="img-fluid mx-auto d-block">
+                                                    @elseif (strtolower($fileExtension) === 'pdf')
+                                                        <iframe src ="{{ asset('/laraview/#../storage/'.$data->bukti_pembayaran) }}" class="col-12 mt-2 mb-2" style="height: 100vh"></iframe>
                                                     @else
-                                                        <iframe src="https://docs.google.com/gview?url={{url('public/Penerimaan/'.$data->bukti_pembayaran)}}&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe>
+                                                        <p>Jenis file tidak didukung.</p>
                                                     @endif
                                                 </div>
                                             </div>
