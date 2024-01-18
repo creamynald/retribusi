@@ -14,7 +14,7 @@ Route::get('/', function () {
     return Redirect::to('/login');
 });
 
-Route::middleware('has.role')
+Route::middleware(['has.role', 'web', 'check.session'])
     ->prefix('admin')
     ->group(function () {
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');

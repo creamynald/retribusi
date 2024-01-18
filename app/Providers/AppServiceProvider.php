@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Str;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,8 +26,5 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blade::directive('rp', function ( $expression ) { return "Rp. <?php echo number_format($expression,0,',','.'); ?>"; });
-        Blade::directive('mimType', function () { 
-            return Str::startsWith($file->getClientOriginalExtension(), 'image/'); 
-        });
     }
 }
