@@ -52,6 +52,41 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-sm-4">
+                <div class="mb-4">
+                    <label class="form-label" for="target">Anggaran / Target Perubahan</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            Rp.
+                        </span>
+                        <input type="number" class="form-control text-center" id="target"
+                            name="target" value="{{ old('target') ?? $data->target }}">
+                    </div>
+                    <!-- error-->
+                    @error('target')
+                        <small class="error mt-2 text-danger">{{ $message }}</small>
+                    @enderror
+                    <!-- end error -->
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="mb-4">
+                    <label class="form-label" for="tahun">Tahun</label>
+                    <select class="js-select2 form-select" id="tahun" name="tahun" style="width: 100%;"
+                        data-placeholder="Tahun berjalan..">
+                        @foreach ($tahun as $item)
+                            <option {{ $data->tahun == $item ? 'selected' : '' }} value="{{ $item }}">
+                                {{ $item }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('tahun')
+                        <small class="error mt-2 text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-sm-12 mb-4">
                 <button type="submit" class="btn btn-primary">
                     <i class="fa fa-fw fa-save"></i>{{ $submit }}</button>

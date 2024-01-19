@@ -38,7 +38,7 @@
                                 <td class="text-center">
                                     <a href="{{ route('objek-retribusi.edit', $data) }}" class="btn btn-sm btn-secondary"
                                         title="Sync">
-                                        <i class="fas fa-sync"></i>
+                                        <i class="fas fa-pencil"></i>
                                     </a>
                                     @hasrole('super admin|admin')
                                         <form action="{{ route('objek-retribusi.destroy', $data) }}" method="POST"

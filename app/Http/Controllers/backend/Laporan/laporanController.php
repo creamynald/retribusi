@@ -237,6 +237,7 @@ class laporanController extends Controller
         // dd(jenisRetribusi::with(['objekRetribusi'])->get());
         return view('backend.transaction.rekap.index',[
             'datas' => jenisRetribusi::all(),
+            'total_retribusi_tahun_ini' => Penerimaan::whereYear('tgl_penyetoran', date('Y'))->sum('jumlah'),
         ]);
     }
 }

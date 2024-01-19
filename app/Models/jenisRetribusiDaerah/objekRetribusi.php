@@ -14,6 +14,8 @@ class objekRetribusi extends Model
         'jenis_retribusi_id',
         'kode',
         'nama',
+        'target',
+        'tahun',
     ];
 
     public function jenisRetribusi()
