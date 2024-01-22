@@ -230,14 +230,16 @@ class laporanController extends Controller
         return view('backend.transaction.penerimaan.laporan_tahunan', compact('penerimaan', 'upt'));
     }
 
-    public function rekapitulasi()
+    public function target()
     {
-
-        // dd(jenisRetribusi::all());
-        // dd(jenisRetribusi::with(['objekRetribusi'])->get());
         return view('backend.transaction.rekap.index',[
             'datas' => jenisRetribusi::all(),
             'total_retribusi_tahun_ini' => Penerimaan::whereYear('tgl_penyetoran', date('Y'))->sum('jumlah'),
         ]);
+    }
+
+    public function rekapitulasi()
+    {
+        return dd('ini untuk target');
     }
 }
