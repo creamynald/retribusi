@@ -118,7 +118,7 @@
             </a>
         </li>
         <li class="nav-main-item">
-            <a class="nav-main-link {{ request()->segment(3) == 'target-dan-relasisasi' ? 'active' : '' }}" href="{{ route('target') }}">
+            <a class="nav-main-link {{ request()->segment(3) == 'target-dan-realisasi' ? 'active' : '' }}" href="{{ route('target') }}">
                 <span class="nav-main-link-name">Target & Realisasi</span>
             </a>
         </li>

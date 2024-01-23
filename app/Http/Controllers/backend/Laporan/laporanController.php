@@ -240,6 +240,8 @@ class laporanController extends Controller
 
     public function rekapitulasi()
     {
-        return dd('ini untuk target');
+        return view('backend.transaction.rekap2.index',[
+            'datas' => Penerimaan::whereYear('tgl_penyetoran', date('Y'))->get(),
+        ]);
     }
 }
