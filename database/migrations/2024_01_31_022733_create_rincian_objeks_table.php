@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rincian_retribusis', function (Blueprint $table) {
+        Schema::create('rincian_objeks', function (Blueprint $table) {
             $table->id();
             $table->string('objek_retribusi_id');
             $table->string('kode');
             $table->string('nama');
+            $table->string('target')->nullable();
+            $table->string('tahun')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rincian_retribusis');
+        Schema::dropIfExists('rincian_objeks');
     }
 };

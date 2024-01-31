@@ -28,6 +28,8 @@ class objRetController extends Controller
         return view('backend.jenPajDae.objek.create', [
             'data' => new objekRetribusi(),
             'jenisRetribusis' => jenisRetribusi::orderBy('kode', 'asc')->get(),
+            // buat foreach tahun untuk lima tahun kedepan
+            'tahun' => [date('Y'), date('Y') + 1, date('Y') + 2, date('Y') + 3, date('Y') + 4],
         ]);
     }
 

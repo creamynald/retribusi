@@ -76,6 +76,12 @@
                     <span class="nav-main-link-name">Objek Retribusi</span>
                 </a>
             </li>
+            <li class="nav-main-item">
+                <a class="nav-main-link {{ request()->segment(3) == 'rincian-objek' ? 'active' : '' }}"
+                    href="{{ route('rincian-objek.index') }}">
+                    <span class="nav-main-link-name">Rincian Objek</span>
+                </a>
+            </li>
         </ul>
     </li>
 @endhasrole

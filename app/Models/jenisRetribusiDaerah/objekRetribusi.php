@@ -27,4 +27,9 @@ class objekRetribusi extends Model
     {
         return $this->hasMany(Penerimaan::class);
     }
+
+    public function rincianObjek()
+    {
+        return $this->hasMany(rincianObjek::class);
+    }
 }
