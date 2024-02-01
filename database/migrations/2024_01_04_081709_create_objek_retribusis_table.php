@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('jenis_retribusi_id');
             $table->string('kode');
             $table->string('nama');
+            $table->string('target')->nullable();
+            $table->string('tahun')->nullable();
             $table->timestamps();
         });
     }

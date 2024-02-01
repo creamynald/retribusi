@@ -10,17 +10,17 @@
         <div class="row">
             <div class="col-sm">
                 <div class="mb-4">
-                    <label class="form-label" for="jenis_retribusi_id">Jenis Retribusi</label>
-                    <select class="js-select2 form-select" id="jenis_retribusi_id" name="jenis_retribusi_id"
-                        style="width: 100%;" data-placeholder="Pilih Jenis Retribusi..">
+                    <label class="form-label" for="objek_retribusi_id">Objek Retribusi</label>
+                    <select class="js-select2 form-select" id="objek_retribusi_id" name="objek_retribusi_id"
+                        style="width: 100%;" data-placeholder="Pilih Objek Retribusi..">
                         <option></option>
-                        @foreach ($jenisRetribusis as $item)
-                            <option {{ $data->jenis_retribusi_id == $item->id ? 'selected' : '' }}
+                        @foreach ($objekRetribusis as $item)
+                            <option {{ $data->objek_retribusi_id == $item->id ? 'selected' : '' }}
                                 value="{{ $item->id }}">{{ $item->nama }}</option>
                         @endforeach
                     </select>
                     <!-- error-->
-                    @error('jenis_retribusi_id')
+                    @error('objek_retribusi_id')
                         <small class="error mt-2 text-danger">{{ $message }}</small>
                     @enderror
                 </div>
@@ -31,7 +31,7 @@
                 <div class="mb-4">
                     <label class="form-label" for="kode">Kode</label>
                     <input type="text" class="form-control" id="kode" name="kode"
-                        value="{{ old('kode') ?? $data->kode }}" placeholder="Kode Retribusi" autofocus>
+                        value="{{ old('kode') ?? $data->kode }}" placeholder="Kode Rincian Objek" autofocus>
                     <!-- error-->
                     @error('kode')
                         <small class="error mt-2 text-danger">{{ $message }}</small>
@@ -43,7 +43,7 @@
                 <div class="mb-4">
                     <label class="form-label" for="nama">Nama</label>
                     <input type="text" class="form-control" id="nama" name="nama"
-                        value="{{ old('nama') ?? $data->nama }}" placeholder="Jenis Retribusi">
+                        value="{{ old('nama') ?? $data->nama }}" placeholder="Rincian Objek">
                     <!-- error-->
                     @error('nama')
                         <small class="error mt-2 text-danger">{{ $message }}</small>

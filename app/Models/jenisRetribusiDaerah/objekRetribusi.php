@@ -14,6 +14,8 @@ class objekRetribusi extends Model
         'jenis_retribusi_id',
         'kode',
         'nama',
+        'target',
+        'tahun',
     ];
 
     public function jenisRetribusi()
@@ -24,5 +26,10 @@ class objekRetribusi extends Model
     public function penerimaans()
     {
         return $this->hasMany(Penerimaan::class);
+    }
+
+    public function rincianObjek()
+    {
+        return $this->hasMany(rincianObjek::class);
     }
 }

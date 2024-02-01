@@ -33,8 +33,10 @@
                                 <th class="text-center" style="width: 60px;">No</th>
                                 <th class="text-center" style="width: 90px;">Ayat</th>
                                 <th class="text-center">Uraian</th>
-                                <th class="text-end" style="width: 120px;">Anggaran/Target Perubahan</th>
-                                <th class="text-end" style="width: 120px;">Realisasi s.d hari ini</th>
+                                <th class="text-end">Anggaran/Target Perubahan</th>
+                                <th class="text-end">Realisasi s.d hari ini</th>
+                                <th class="text-end">Prosentase <br> %</th>
+                                <th class="text-end">Kurang/Lebih</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,6 +46,8 @@
                                 <td>
                                     <p class="fw-semibold mb-1">Hasil Retribusi Daerah</p>
                                 </td>
+                                <td class="text-end"></td>
+                                <td class="text-end"></td>
                                 <td class="text-end"></td>
                                 <td class="text-end"></td>
                             </tr>
@@ -56,17 +60,21 @@
                                     </td>
                                     <td class="text-end"></td>
                                     <td class="text-end"></td>
+                                    <td class="text-end"></td>
+                                    <td class="text-end"></td>
                                 </tr>
                                 @foreach ($retribusi->objekRetribusi as $objek)
                                     @foreach ($objek->penerimaans as $retribusi)
-                                        <tr style="font-weight: 800;">
+                                        <tr>
                                             <td class="text-center">{{ $index + 1 }}</td>
                                             <td class="text-left">{{ $objek->kode }}</td>
                                             <td>
                                                 <p class="fw-semibold mb-1">{{ $objek->nama }}</p>
                                             </td>
-                                            <td class="text-end"></td>
-                                            <td class="text-end">{{ $retribusi->jumlah }}</td>
+                                            <td class="text-end">@rp($objek->target)</td>
+                                            <td class="text-end">@rp($retribusi->jumlah)</td>
+                                            <td class="text-end">{{ ($objek->target)/($retribusi->jumlah)*100 }}</td>
+                                            <td class="text-end">@rp($objek->target - $retribusi->jumlah)</td>
                                         </tr>
                                     @endforeach
                                 @endforeach
@@ -74,8 +82,10 @@
                             <tr class="table-info">
                                 <td colspan="3" class="fw-bold text-uppercase text-end">Jumlah Hasil Retribusi Daerah
                                 </td>
-                                <td class="fw-bold text-end">$30.000,00</td>
-                                <td class="fw-bold text-end">$30.000,00</td>
+                                <td class="fw-bold text-end"></td>
+                                <td class="fw-bold text-end">@rp($total_retribusi_tahun_ini)</td>
+                                <td class="fw-bold text-end"></td>
+                                <td class="fw-bold text-end"></td>
                             </tr>
                         </tbody>
                     </table>

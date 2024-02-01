@@ -17,6 +17,9 @@ class objRetController extends Controller
             'datas' => objekRetribusi::with('jenisRetribusi')
                 ->orderBy('kode', 'asc')
                 ->get(),
+
+            // buat foreach tahun untuk lima tahun kedepan
+            'tahun' => [date('Y'), date('Y') + 1, date('Y') + 2, date('Y') + 3, date('Y') + 4],
         ]);
     }
 
@@ -25,6 +28,8 @@ class objRetController extends Controller
         return view('backend.jenPajDae.objek.create', [
             'data' => new objekRetribusi(),
             'jenisRetribusis' => jenisRetribusi::orderBy('kode', 'asc')->get(),
+            // buat foreach tahun untuk lima tahun kedepan
+            'tahun' => [date('Y'), date('Y') + 1, date('Y') + 2, date('Y') + 3, date('Y') + 4],
         ]);
     }
 
@@ -35,6 +40,8 @@ class objRetController extends Controller
                 'jenis_retribusi_id' => 'required',
                 'kode' => 'required|unique:objek_retribusis,kode',
                 'nama' => 'required',
+                'target' => 'nullable|numeric',
+                'tahun' => 'nullable|numeric',
             ],
             [
                 'jenis_retribusi_id.required' => 'Jenis retribusi harus dipilih',
@@ -58,9 +65,10 @@ class objRetController extends Controller
         return view('backend.jenPajDae.objek.edit', [
             'data' => $objekRetribusi,
             'jenisRetribusis' => jenisRetribusi::orderBy('kode', 'asc')->get(),
+            'tahun' => [date('Y'), date('Y') + 1, date('Y') + 2, date('Y') + 3, date('Y') + 4],
         ]);
     }
-    
+
     public function update(Request $request, objekRetribusi $objekRetribusi)
     {
         $request->validate(
@@ -68,6 +76,8 @@ class objRetController extends Controller
                 'jenis_retribusi_id' => 'required',
                 'kode' => 'required|unique:objek_retribusis,kode,' . $objekRetribusi->id,
                 'nama' => 'required',
+                'target' => 'nullable|numeric',
+                'tahun' => 'nullable|numeric',
             ],
             [
                 'jenis_retribusi_id.required' => 'Jenis retribusi harus dipilih',

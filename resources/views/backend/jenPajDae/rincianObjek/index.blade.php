@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 
 @section('title', 'Jenis Pajak Daerah')
-@section('subTitle', 'Objek Retribusi')
+@section('subTitle', 'Rincian Objek')
 
 @section('content')
     <div class="content">
@@ -12,7 +12,7 @@
                 <h3 class="block-title">
                     <small>Table @yield('subTitle')</small>
                 </h3>
-                <a href="{{ route('objek-retribusi.create') }}" type="button" class="btn-block-option">
+                <a href="{{ route('rincian-objek.create') }}" type="button" class="btn-block-option">
                     <i class="si si-plus"></i> Tambah Data
                 </a>
             </div>
@@ -22,7 +22,7 @@
                     <thead>
                         <tr>
                             <th class="text-center"></th>
-                            <th>Objek</th>
+                            <th>Rincian Objek</th>
                             <th class="text-center" style="width: 15%;">Action</th>
                         </tr>
                     </thead>
@@ -31,17 +31,17 @@
                             <tr>
                                 <td class="text-center">{{ $index + 1 }}</td>
                                 <td>
-                                    <small>{{ $data->jenisRetribusi->kode }} - {{ $data->jenisRetribusi->nama }}</small>
+                                    <small>{{ $data->objekRetribusi->kode }} - {{ $data->objekRetribusi->nama }}</small>
                                     <br>
                                     <label class="fw-semibold">{{ $data->kode }} - {{ $data->nama }}</label>
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{ route('objek-retribusi.edit', $data) }}" class="btn btn-sm btn-secondary"
+                                    <a href="{{ route('rincian-objek.edit', $data) }}" class="btn btn-sm btn-secondary"
                                         title="Sync">
                                         <i class="fas fa-pencil"></i>
                                     </a>
                                     @hasrole('super admin|admin')
-                                        <form action="{{ route('objek-retribusi.destroy', $data) }}" method="POST"
+                                        <form action="{{ route('rincian-objek.destroy', $data) }}" method="POST"
                                             class="d-inline-block">
                                             @csrf
                                             @method('DELETE')

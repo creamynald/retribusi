@@ -3,7 +3,7 @@
 use App\Http\Controllers\backend\Laporan\laporanController;
 use App\Http\Controllers\backend\PemerintahDaerah\{OPDController, pemdaController, UPTController, usersController};
 use App\Http\Controllers\backend\permissions\{assignController, roleController, permissionController, userController};
-use App\Http\Controllers\backend\jenisPajakDaerah\{jenRetController, objRetController};
+use App\Http\Controllers\backend\jenisPajakDaerah\{jenRetController, objRetController, rinObjController};
 // use App\Http\Controllers\backend\Rekening\rekController;
 use App\Http\Controllers\backend\user\profileController;
 use App\Http\Controllers\backend\Transaction\PenerimaanController;
@@ -43,6 +43,7 @@ Route::middleware(['has.role', 'web', 'check.session'])
         Route::prefix('jenis-pajak-daerah')->group(function () {
             Route::resource('retribusi', jenRetController::class);
             Route::resource('objek-retribusi', objRetController::class);
+            Route::resource('rincian-objek', rinObjController::class);
         });
 
         // transaksi
@@ -64,6 +65,7 @@ Route::middleware(['has.role', 'web', 'check.session'])
             Route::get('bulanan', [laporanController::class, 'monthly_report'])->name('monthly_report');
             Route::get('tahunan', [laporanController::class, 'annual_report'])->name('annual_report');
             Route::resource('harian', laporanController::class);
+            Route::get('target-dan-realisasi', [laporanController::class, 'target'])->name('target');
             route::get('rekap', [laporanController::class, 'rekapitulasi'])->name('rekap');
         });
     });

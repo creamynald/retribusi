@@ -76,11 +76,17 @@
                     <span class="nav-main-link-name">Objek Retribusi</span>
                 </a>
             </li>
+            <li class="nav-main-item">
+                <a class="nav-main-link {{ request()->segment(3) == 'rincian-objek' ? 'active' : '' }}"
+                    href="{{ route('rincian-objek.index') }}">
+                    <span class="nav-main-link-name">Rincian Objek</span>
+                </a>
+            </li>
         </ul>
     </li>
 @endhasrole
 <li class="nav-main-heading">Transaksi</li>
-<li class="nav-main-item">
+<li class="nav-main-item {{ request()->segment(2) == 'transaksi' ? 'open' : '' }}">
     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false"
         href="#">
         <i class="nav-main-link-icon fa fa-money-bill-transfer"></i>
@@ -88,14 +94,14 @@
     </a>
     <ul class="nav-main-submenu">
         <li class="nav-main-item">
-            <a class="nav-main-link" href="{{ route('penerimaan.index') }}">
+            <a class="nav-main-link {{ request()->segment(3) == 'penerimaan' ? 'active' : '' }}" href="{{ route('penerimaan.index') }}">
                 <span class="nav-main-link-name">Retribusi</span>
             </a>
         </li>
     </ul>
 </li>
 <li class="nav-main-heading">Laporan</li>
-<li class="nav-main-item">
+<li class="nav-main-item {{ request()->segment(2) == 'laporan' ? 'open' : '' }}">
     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false"
         href="#">
         <i class="nav-main-link-icon fa fa-money-bill-transfer"></i>
@@ -103,23 +109,28 @@
     </a>
     <ul class="nav-main-submenu">
         <li class="nav-main-item">
-            <a class="nav-main-link" href="{{ route('harian.index') }}">
-                <span class="nav-main-link-name">Harianx</span>
+            <a class="nav-main-link {{ request()->segment(3) == 'harian' ? 'active' : '' }}" href="{{ route('harian.index') }}">
+                <span class="nav-main-link-name">Harian</span>
             </a>
         </li>
         <li class="nav-main-item">
-            <a class="nav-main-link" href="{{ route('monthly_report') }}">
+            <a class="nav-main-link {{ request()->segment(3) == 'bulanan' ? 'active' : '' }}" href="{{ route('monthly_report') }}">
                 <span class="nav-main-link-name">Bulanan</span>
             </a>
         </li>
         <li class="nav-main-item">
-            <a class="nav-main-link" href="{{ route('annual_report') }}">
+            <a class="nav-main-link {{ request()->segment(3) == 'tahunan' ? 'active' : '' }}" href="{{ route('annual_report') }}">
                 <span class="nav-main-link-name">Tahunan</span>
             </a>
         </li>
         <li class="nav-main-item">
-            <a class="nav-main-link" href="{{ route('rekap') }}">
-                <span class="nav-main-link-name">Rekap</span>
+            <a class="nav-main-link {{ request()->segment(3) == 'target-dan-realisasi' ? 'active' : '' }}" href="{{ route('target') }}">
+                <span class="nav-main-link-name">Target & Realisasi</span>
+            </a>
+        </li>
+        <li class="nav-main-item">
+            <a class="nav-main-link {{ request()->segment(3) == 'rekap' ? 'active' : '' }}" href="{{ route('rekap') }}">
+                <span class="nav-main-link-name">Rekapitulasi</span>
             </a>
         </li>
     </ul>
