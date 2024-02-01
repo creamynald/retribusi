@@ -22,5 +22,10 @@ class rincianObjek extends Model
     {
         return $this->belongsTo(objekRetribusi::class);
     }
+    
+    public function penerimaans()
+    {
+        return $this->hasMany(Penerimaan::class);
+    }
 
 }

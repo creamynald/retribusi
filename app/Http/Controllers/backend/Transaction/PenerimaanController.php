@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Transaction\Penerimaan;
 use App\Models\User;
 use App\Models\Pemda\Upt;
-use App\Models\jenisRetribusiDaerah\objekRetribusi;
+use App\Models\jenisRetribusiDaerah\rincianObjek;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -57,8 +57,8 @@ class PenerimaanController extends Controller
     {
         //
         $penerimaan = new Penerimaan();
-        $objek_retribusi = objekRetribusi::all();
-        return view('backend.transaction.penerimaan.form', compact('penerimaan','objek_retribusi'));
+        $rincian_objek = rincianObjek::all();
+        return view('backend.transaction.penerimaan.form', compact('penerimaan','rincian_objek'));
     }
 
     /**
@@ -67,16 +67,14 @@ class PenerimaanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'objek_retribusi_id' => 'required',
+            'rincian_objek_id' => 'required',
             'tgl_penerimaan' => 'required',
             'tgl_penyetoran' => 'required',
             'bukti_pembayaran' => 'required|mimes:jpg,jpeg,png,pdf',
             'jumlah' => 'required',
         ],
         [
-            'periode.required' => 'Periode harus diisi',
-            'kode_rekening.required' => 'Kode Rekening harus diisi',
-            'nama_rekening.required' => 'Nama Rekening harus diisi',
+            'rincian_objek_id.required' => 'Rincian Objek harus diisi',
             'tgl_penerimaan.required' => 'Tanggal Penerimaan harus diisi',
             'tgl_penyetoran.required' => 'Tanggal Penyetoran harus diisi',
             'bukti_pembayaran.required' => 'Bukti Pembayaran harus diisi',
@@ -114,8 +112,8 @@ class PenerimaanController extends Controller
      */
     public function edit(Penerimaan $penerimaan)
     {
-        $objek_retribusi = objekRetribusi::all();
-        return view('backend.transaction.penerimaan.form', compact('penerimaan','objek_retribusi'));
+        $rincian_objek = rincianObjek::all();
+        return view('backend.transaction.penerimaan.form', compact('penerimaan','rincian_objek'));
     }
 
     /**
@@ -124,16 +122,14 @@ class PenerimaanController extends Controller
     public function update(Request $request, Penerimaan $penerimaan)
     {
         $request->validate([
-            'objek_retribusi_id' => 'required',
+            'rincian_objek_id' => 'required',
             'tgl_penerimaan' => 'required',
             'tgl_penyetoran' => 'required',
             'bukti_pembayaran' => 'mimes:jpg,jpeg,png,pdf',
             'jumlah' => 'required',
         ],
         [
-            'periode.required' => 'Periode harus diisi',
-            'kode_rekening.required' => 'Kode Rekening harus diisi',
-            'nama_rekening.required' => 'Nama Rekening harus diisi',
+            'rincian_objek_id.required' => 'Rincian Objek harus diisi',
             'tgl_penerimaan.required' => 'Tanggal Penerimaan harus diisi',
             'tgl_penyetoran.required' => 'Tanggal Penyetoran harus diisi',
             'bukti_pembayaran.required' => 'Bukti Pembayaran harus diisi',

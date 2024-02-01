@@ -46,7 +46,7 @@
                         @forelse ($penerimaan as $index => $data)
                             <tr>
                                 <td class="text-center">{{ $index + 1 }}</td>
-                                <td class="d-none d-sm-table-cell">{{ $data->objekRetribusi->kode }} - <span style="font-weight: 800;">{{ $data->objekRetribusi->nama }}</span></td>
+                                <td class="d-none d-sm-table-cell">{{ $data->rincianObjek->kode }} - <span style="font-weight: 800;">{{ $data->rincianObjek->nama }}</span></td>
                                 <td class="d-none d-sm-table-cell">{{ $data->tgl_penerimaan }}</td>
                                 <td class="d-none d-sm-table-cell">{{ $data->tgl_penyetoran }}</td>
                                 <td class="d-none d-sm-table-cell">@rp($data->jumlah)</td>
@@ -101,11 +101,11 @@
                                                 </div>
                                                 <div class="row d-flex">
                                                     <div class="col-6">Kode Rekening</div>
-                                                    <div class="col-6">: {{$data->objekRetribusi->kode}}</div>
+                                                    <div class="col-6">: {{$data->rincianObjek->kode}}</div>
                                                 </div>
                                                 <div class="row d-flex">
                                                     <div class="col-6">Nama Rekening</div>
-                                                    <div class="col-6">: {{$data->objekRetribusi->nama}}</div>
+                                                    <div class="col-6">: {{$data->rincianObjek->nama}}</div>
                                                 </div>
                                                 <div class="row d-flex">
                                                     <div class="col-6">Tanggal Penerimaan</div>

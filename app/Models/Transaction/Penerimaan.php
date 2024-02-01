@@ -4,7 +4,7 @@ namespace App\Models\Transaction;
 
 use App\Models\User;
 use App\Models\Pemda\Upt;
-use App\Models\jenisRetribusiDaerah\objekRetribusi;
+use App\Models\jenisRetribusiDaerah\rincianObjek;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +14,7 @@ class Penerimaan extends Model
     protected $fillable = [
         'user_id',
         'upt_id',
-        'objek_retribusi_id',
+        'rincian_objek_id',
         'tgl_penerimaan',
         'tgl_penyetoran',
         'bukti_pembayaran',
@@ -29,8 +29,8 @@ class Penerimaan extends Model
         return $this->belongsTo(Upt::class,'upt_id');
     }
 
-    public function objekRetribusi(){
-        return $this->belongsTo(objekRetribusi::class,'objek_retribusi_id');
+    public function rincianObjek(){
+        return $this->belongsTo(rincianObjek::class,'rincian_objek_id');
     }
 
     public static function total_retribusi($upt_id){

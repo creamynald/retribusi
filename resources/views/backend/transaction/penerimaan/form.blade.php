@@ -35,10 +35,10 @@
                     <div class="col-sm-12">
                         <div class="mb-4">
                             <label class="form-label" for="periode">Objek Retribusi</label>
-                            <select class="js-select2 form-select" id="val-select2" name="objek_retribusi_id" data-placeholder="Pilih Objek Retribusi...">
+                            <select class="js-select2 form-select" id="val-select2" name="rincian_objek_id" data-placeholder="Pilih Rincian Objek Retribusi...">
                                 <option></option>
-                                @foreach ($objek_retribusi as $item)                        
-                                    <option value="{{$item->id}}" @selected(old('objek_retribusi_id') == $item) @if ($item->id == $penerimaan->objek_retribusi_id)
+                                @foreach ($rincian_objek as $item)                        
+                                    <option value="{{$item->id}}" @selected(old('rincian_objek_id') == $item) @if ($item->id == $penerimaan->rincian_objek_id)
                                         selected
                                     @endif>{{$item->nama}}</option>
                                 @endforeach
@@ -104,7 +104,7 @@
                             <input type="file" class="form-control" id="bukti_pembayaran" name="bukti_pembayaran"
                                 placeholder="Bukti Pembayaran">
                         </div>
-                        <input type="text" value="{{$penerimaan->bukti_pembayaran}}" name="old_file">
+                        <input type="hidden" value="{{$penerimaan->bukti_pembayaran}}" name="old_file">
                     </div>
                 </div>
             </div>
