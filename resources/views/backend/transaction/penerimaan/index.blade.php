@@ -109,11 +109,11 @@
                                                 </div>
                                                 <div class="row d-flex">
                                                     <div class="col-6">Tanggal Penerimaan</div>
-                                                    <div class="col-6">: {{$data->tgl_penerimaan}}</div>
+                                                    <div class="col-6">: {{\Carbon\carbon::parse($data->tgl_penerimaan)->format('d-m-Y')}}</div>
                                                 </div>                                                
                                                 <div class="row d-flex">
                                                     <div class="col-6">Tanggal Penyetoran</div>
-                                                    <div class="col-6">: {{$data->tgl_penyetoran}}</div>
+                                                    <div class="col-6">: {{\Carbon\carbon::parse($data->tgl_penyetoran)->format('d-m-Y')}}</div>
                                                 </div>
                                                 <div class="col-12 mt-2 mb-2">
                                                     @php
