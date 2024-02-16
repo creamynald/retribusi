@@ -131,6 +131,9 @@
         .error {
             color: red;
         }
+        #errorContainer p{
+            margin: 0;
+        }
     </style>
 @endpush
 
@@ -166,13 +169,16 @@
         document.getElementById('fileForm').addEventListener('submit', function(event) {
             var fileInput = document.getElementById('bukti_pembayaran');
             var errorContainer = document.getElementById('errorContainer');
+            var segmentValue = "{{ request()->segment(4) }}"; // Get the last url using url segment php/laravel
 
-            if (!fileInput.files || !fileInput.files[0]) {
-                event.preventDefault(); // Prevent form submission
-                errorContainer.innerHTML = '<p class="error">Mohon pilih file sebelum melakukan simpan data.</p>';
-                fileInput.focus(); // Focus on the file input field
-            } else {
-                errorContainer.innerHTML = ''; // Clear any previous error messages
+            if(segmentValue === 'create'){ // To make the script run only on create page not in edit cause in edit file can be nullable
+                if (!fileInput.files || !fileInput.files[0]) {
+                    event.preventDefault(); // Prevent form submission
+                    errorContainer.innerHTML = '<p class="error">Mohon pilih file sebelum melakukan simpan data.</p>';
+                    fileInput.focus(); // Focus on the file input field
+                } else {
+                    errorContainer.innerHTML = ''; // Clear any previous error messages
+                }
             }
         });
     </script>
