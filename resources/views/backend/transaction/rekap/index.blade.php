@@ -64,18 +64,31 @@
                                     <td class="text-end"></td>
                                 </tr>
                                 @foreach ($retribusi->objekRetribusi as $objek)
-                                    @foreach ($objek->penerimaans as $retribusi)
-                                        <tr>
-                                            <td class="text-center">{{ $index + 1 }}</td>
-                                            <td class="text-left">{{ $objek->kode }}</td>
-                                            <td>
-                                                <p class="fw-semibold mb-1">{{ $objek->nama }}</p>
-                                            </td>
-                                            <td class="text-end">@rp($objek->target)</td>
-                                            <td class="text-end">@rp($retribusi->jumlah)</td>
-                                            <td class="text-end">{{ ($objek->target)/($retribusi->jumlah)*100 }}</td>
-                                            <td class="text-end">@rp($objek->target - $retribusi->jumlah)</td>
-                                        </tr>
+                                    <tr>
+                                        <td class="text-center"></td>
+                                        <td class="text-left">{{ $objek->kode }}</td>
+                                        <td>
+                                            <p class="fw-semibold mb-1">{{ $objek->nama }}</p>
+                                        </td>
+                                        <td class="text-end">@rp($objek->target)</td>
+                                        <td class="text-end">@rp($retribusi->jumlah)</td>
+                                        <td class="text-end"></td>
+                                        <td class="text-end"></td>
+                                    </tr>
+                                    @foreach ($objek->rincianObjek as $rincian)
+                                        @foreach ($rincian->penerimaans as $retribusi)
+                                            <tr>
+                                                <td class="text-center"></td>
+                                                <td class="text-left">{{ $rincian->kode }}</td>
+                                                <td>
+                                                    <p class="fw-semibold mb-1">{{ $rincian->nama }}</p>
+                                                </td>
+                                                <td class="text-end">@rp($rincian->target)</td>
+                                                <td class="text-end">@rp($retribusi->jumlah)</td>
+                                                <td class="text-end">{{ ($rincian->target / $retribusi->jumlah) * 100 }}</td>
+                                                <td class="text-end">@rp($rincian->target - $retribusi->jumlah)</td>
+                                            </tr>
+                                        @endforeach
                                     @endforeach
                                 @endforeach
                             @endforeach
