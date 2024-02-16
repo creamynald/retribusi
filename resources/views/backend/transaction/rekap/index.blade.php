@@ -85,7 +85,7 @@
                                                 </td>
                                                 <td class="text-end">@rp($rincian->target)</td>
                                                 <td class="text-end">@rp($retribusi->jumlah)</td>
-                                                <td class="text-end">{{ ($rincian->target / $retribusi->jumlah) * 100 }}</td>
+                                                <td class="text-end">{{ number_format(($retribusi->jumlah/$rincian->target) * 100, 2)}}%</td>
                                                 <td class="text-end">@rp($rincian->target - $retribusi->jumlah)</td>
                                             </tr>
                                         @endforeach
