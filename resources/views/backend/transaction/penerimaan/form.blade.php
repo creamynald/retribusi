@@ -12,9 +12,9 @@
         <!-- Dynamic Table Full -->
         {{-- <form action="{{ route('penerimaan.store') }}" method="POST" enctype="multipart/form-data"> --}}
         @if (Request::segment(5) == 'edit')
-            <form action="{{ route('penerimaan.update', $penerimaan->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('penerimaan.update', $penerimaan->id) }}" method="POST" enctype="multipart/form-data" id="fileForm">
             @else
-                <form action="{{ route('penerimaan.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('penerimaan.store') }}" method="POST" enctype="multipart/form-data" id="fileForm">
         @endif
         @csrf
         @if (Request::segment(5) == 'edit')
@@ -35,12 +35,12 @@
                     <div class="col-sm-12">
                         <div class="mb-4">
                             <label class="form-label" for="periode">Objek Retribusi</label>
-                            <select class="js-select2 form-select" id="val-select2" name="rincian_objek_id" data-placeholder="Pilih Rincian Objek Retribusi...">
+                            <select class="js-select2 form-select" id="val-select2" name="rincian_objek_id"
+                                data-placeholder="Pilih Rincian Objek Retribusi...">
                                 <option></option>
-                                @foreach ($rincian_objek as $item)                        
-                                    <option value="{{$item->id}}" @selected(old('rincian_objek_id') == $item) @if ($item->id == $penerimaan->rincian_objek_id)
-                                        selected
-                                    @endif>{{$item->nama}}</option>
+                                @foreach ($rincian_objek as $item)
+                                    <option value="{{ $item->id }}" @selected(old('rincian_objek_id') == $item)
+                                        @if ($item->id == $penerimaan->rincian_objek_id) selected @endif>{{ $item->nama }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -80,7 +80,8 @@
                             <label class="form-label" for="tgl_penyetoran">Tanggal Penyetoran</label>
                             <input type="text" class="js-flatpickr form-control" id="tgl_penyetoran"
                                 name="tgl_penyetoran" placeholder="Tanggal Penyetoran"
-                                value="{{ old('tgl_penyetoran') ?? date("Y-m-d") }}" style="pointer-events: none; opacity: 80%;">
+                                value="{{ old('tgl_penyetoran') ?? date('Y-m-d') }}"
+                                style="pointer-events: none; opacity: 80%;">
                         </div>
                     </div>
                 </div>
@@ -104,7 +105,8 @@
                             <input type="file" class="form-control" id="bukti_pembayaran" name="bukti_pembayaran"
                                 placeholder="Bukti Pembayaran">
                         </div>
-                        <input type="hidden" value="{{$penerimaan->bukti_pembayaran}}" name="old_file">
+                        <input type="hidden" value="{{ $penerimaan->bukti_pembayaran }}" name="old_file">
+                        <div id="errorContainer"></div>
                     </div>
                 </div>
             </div>
@@ -122,10 +124,14 @@
 @endsection
 
 @push('css')
-    <link rel="stylesheet"
-        href="{{ asset('assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/js/plugins/flatpickr/flatpickr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/js/plugins/select2/css/select2.css') }}">
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
 @endpush
 
 @push('js')
@@ -137,7 +143,9 @@
     <script src="{{ asset('assets/js/plugins/flatpickr/flatpickr.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/select2/js/select2.full.min.js') }}"></script>
     <!-- Page JS Helpers (Select2 plugin) -->
-    <script>Codebase.helpersOnLoad(['jq-select2']);</script>
+    <script>
+        Codebase.helpersOnLoad(['jq-select2']);
+    </script>
     <script>
         Codebase.helpersOnLoad(['js-flatpickr', 'jq-datepicker', 'jq-maxlength', 'jq-select2', 'jq-rangeslider',
             'jq-masked-inputs', 'jq-pw-strength'
@@ -152,5 +160,20 @@
             //apply formatting
             return retVal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
+    </script>
+
+    <script>
+        document.getElementById('fileForm').addEventListener('submit', function(event) {
+            var fileInput = document.getElementById('bukti_pembayaran');
+            var errorContainer = document.getElementById('errorContainer');
+
+            if (!fileInput.files || !fileInput.files[0]) {
+                event.preventDefault(); // Prevent form submission
+                errorContainer.innerHTML = '<p class="error">Mohon pilih file sebelum melakukan simpan data.</p>';
+                fileInput.focus(); // Focus on the file input field
+            } else {
+                errorContainer.innerHTML = ''; // Clear any previous error messages
+            }
+        });
     </script>
 @endpush
