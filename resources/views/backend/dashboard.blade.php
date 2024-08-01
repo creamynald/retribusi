@@ -10,7 +10,7 @@
                         </div>
                         <div>
                             <div class="fs-3 fw-semibold text-white">@rp($target_retribusi_tahun_ini)</div>
-                            <div class="fs-sm fw-semibold text-muted text-white-75">Target Pajak & Retribusi Tahun 2023</div>
+                            <div class="fs-sm fw-semibold text-muted text-white-75">Target Pajak & Retribusi Tahun 2024</div>
                         </div>
                     </div>
                 </a>

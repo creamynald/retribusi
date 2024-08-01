@@ -21,7 +21,7 @@ class userController extends Controller
         $user = User::find(request('email'));
         $user->assignRole(request('role'));
 
-        return to_route('user.index');
+        return to_route('user.index');  
     }
 
     public function edit(User $user)

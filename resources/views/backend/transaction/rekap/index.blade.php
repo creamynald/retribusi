@@ -12,8 +12,9 @@
                 <h3 class="block-title col-3">
                     <small>Table @yield('subTitle')</small>
                 </h3>
-                {{-- button cetak / print --}}
-                <button>Cetak</button>
+                <button type="submit" class="btn btn-sm btn-primary ms-2">
+                    <i class="fa fa-print"></i> Cetak
+                </button>
             </div>
             <div class="block-content block-content-full">
 
@@ -21,7 +22,7 @@
                 <p class="text-muted text-center" style="text-transform: uppercase; font-weight: 800;">
                     Target dan Realisasi<br>
                     Penerimaan Pendapatan Daerah<br>
-                    Kabupaten Bengkalis Tahun Anggaran 2023
+                    Kabupaten Bengkalis Tahun Anggaran 2024
                 </p>
                 <!-- END Header -->
 
@@ -107,7 +108,7 @@
 
                 <!-- Footer -->
                 <p class="text-muted text-center">
-                    <em>Halaman ini dicetak pada tanggal 20 September 2023</em>
+                    <em>Halaman ini dicetak pada tanggal {{ $getTanggalSekarang }}</em>
                 </p>
                 <!-- END Footer -->
             </div>

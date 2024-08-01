@@ -234,7 +234,9 @@ class laporanController extends Controller
     {
         return view('backend.transaction.rekap.index',[
             'datas' => jenisRetribusi::all(),
+            // 'data_retribusi_tahun_berjalan' => jenisRetribusi::whereYear('created_at', date('Y'))->get(),
             'total_retribusi_tahun_ini' => Penerimaan::whereYear('tgl_penyetoran', date('Y'))->sum('jumlah'),
+            'getTanggalSekarang' => Carbon::now()->format('Y-m-d'),
         ]);
     }
 
